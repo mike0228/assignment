@@ -18,15 +18,15 @@ public class AuthorizeController {
     private String clientId;
     @Value("${github.client.secret}")
     private String clientSecret;
-    @Value("${github.redirect.url}")
-    private String redirectUrl;
+    @Value("${github.redirect.uri}")
+    private String redirectUri;
 
     @GetMapping("/backlocal")
     public  String backlocal(@RequestParam(name="code")String code , @RequestParam(name="state")String state) {
         AccessToken accesstoken =new AccessToken();
         accesstoken.setClient_id(clientId);
         accesstoken.setCode(code);
-        accesstoken.setRedirect_uri(redirectUrl);
+        accesstoken.setRedirect_uri(redirectUri);
         accesstoken.setState(state);
         accesstoken.setClient_secret(clientSecret);
         String token = githubSupport.getAccessToken(accesstoken);
