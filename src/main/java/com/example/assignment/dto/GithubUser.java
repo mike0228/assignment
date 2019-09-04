@@ -1,6 +1,6 @@
 package com.example.assignment.dto;
 
-public class Guser {
+public class GithubUser {
     private String name;
     private String bio;
     private long id;

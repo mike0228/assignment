@@ -2,7 +2,7 @@ package com.example.assignment.support;
 
 import com.alibaba.fastjson.JSON;
 import com.example.assignment.dto.AccessToken;
-import com.example.assignment.dto.Guser;
+import com.example.assignment.dto.GithubUser;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +27,7 @@ public class GithubSupport {
             }
             return null;
     }
-    public Guser gtuser(String accesstoken)  {
+    public GithubUser getUser(String accesstoken)  {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://api.github.com/user?access_token="+accesstoken)
@@ -36,8 +36,8 @@ public class GithubSupport {
             Response response = client.newCall(request).execute();
             String string =response.body().string();
             System.out.println(string);
-            Guser guser=JSON.parseObject(string, Guser.class);
-            return guser;
+            GithubUser githubUser =JSON.parseObject(string, GithubUser.class);
+            return githubUser;
         } catch (IOException e) {
             e.printStackTrace();
         }
