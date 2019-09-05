@@ -3,7 +3,7 @@ package com.example.assignment.dto;
 public class GithubUser {
     private String name;
     private String bio;
-    private long id;
+    private Integer id;
 
     public String getName() {
         return name;
@@ -21,11 +21,11 @@ public class GithubUser {
         this.bio = bio;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 }

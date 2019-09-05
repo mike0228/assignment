@@ -1,4 +1,4 @@
-create table publish
+create table posting
 (
 	id int auto_increment,
 	title varchar(60),
