@@ -39,12 +39,26 @@
             </ul>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12"style="background-color: grey"></div>
-            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12"style="background-color: green"></div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>发帖</h2>
+            <form action ="/publish">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="title" placeholder="帖子标题">
+                </div>
+                <h3 class="page-header"></h3>
+                <label for="description">帖子内容</label>
+                <textarea name="description" id="description" class="form-control" cols="200" rows="20" placeholder="请输入"></textarea>
+                <h5 class="page-header"></h5>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="tag" placeholder="输入标签">
+                </div>
+                <button type="submit" class="btn btn-success">发布帖子</button>
+            </form>
         </div>
     </div>
-</nav>
+</div>
 </body>
 </html>
