@@ -1,4 +1,4 @@
-create table postIn
+create table posts
 (
 	id int auto_increment,
 	title varchar(60),
