@@ -42,4 +42,27 @@ public class PostInService {
         paginationDTO.setPostIn(postInDTOList);
         return paginationDTO;
     }
+
+    public PaginationDTO list(Integer userId, Integer page, Integer size) {
+        PaginationDTO paginationDTO = new PaginationDTO();
+        Integer totalCount = postInMapper.countByUserId(userId);
+        paginationDTO.setPagination(totalCount,page,size);
+        if(page<1)
+            page = 1;
+        if(page > paginationDTO.getTotalPage())
+            page = paginationDTO.getTotalPage();
+        Integer offset = size * (page - 1);
+        List<PostIn> postIns = postInMapper.listByUserId(userId, offset , size);
+        List<PostInDTO> postInDTOList = new ArrayList<>();
+        for(PostIn postIn : postIns)
+        {
+            User user = userMapper.searchById(postIn.getCreator());
+            PostInDTO postInDTO = new PostInDTO();
+            BeanUtils.copyProperties(postIn, postInDTO);
+            postInDTO.setUser(user);
+            postInDTOList.add(postInDTO);
+        }
+        paginationDTO.setPostIn(postInDTOList);
+        return paginationDTO;
+    }
 }

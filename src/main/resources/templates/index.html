@@ -27,6 +27,7 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading" th:text="${postIn.title}"></h4>
+                    <!--/*@thymesVar id="description" type=""*/-->
                     <span th:text="${postIn.description}"></span><br>
                     <span class="text-desc"><span th:text="${postIn.commentCount}"></span> 个回复 · <span th:text="${postIn.viewCount}"></span>次浏览 · <span th:text="${#dates.format(postIn.gmtCreate,'dd MMMM yyyy')}"></span> </span>
                 </div>
