@@ -19,20 +19,29 @@ public class PostInService {
     private PostInMapper postInMapper;
     @Autowired
     private UserMapper userMapper;
+
     public PaginationDTO list(Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
+        Integer totalPage;
         Integer totalCount = postInMapper.count();
-        paginationDTO.setPagination(totalCount,page,size);
-        if(page<1)
+        if (totalCount % size == 0) {
+            totalPage = totalCount / size;
+        } else {
+            totalPage = totalCount / size + 1;
+        }
+
+
+        if (page < 1)
             page = 1;
-        if(page > paginationDTO.getTotalPage())
-            page = paginationDTO.getTotalPage();
+
+        if (page > totalPage)
+            page = totalPage;
+        paginationDTO.setPagination(totalPage, page);
         Integer offset = size * (page - 1);
-        List<PostIn> postIns = postInMapper.list(offset , size);
+        List<PostIn> postIns = postInMapper.list(offset, size);
         List<PostInDTO> postInDTOList = new ArrayList<>();
 
-        for(PostIn postIn : postIns)
-        {
+        for (PostIn postIn : postIns) {
             User user = userMapper.searchById(postIn.getCreator());
             PostInDTO postInDTO = new PostInDTO();
             BeanUtils.copyProperties(postIn, postInDTO);
@@ -45,17 +54,27 @@ public class PostInService {
 
     public PaginationDTO list(Integer userId, Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
+        Integer totalPage;
         Integer totalCount = postInMapper.countByUserId(userId);
-        paginationDTO.setPagination(totalCount,page,size);
-        if(page<1)
+        if (totalCount % size == 0) {
+            totalPage = totalCount / size;
+        } else {
+            totalPage = totalCount / size + 1;
+        }
+
+
+        if (page < 1)
             page = 1;
-        if(page > paginationDTO.getTotalPage())
-            page = paginationDTO.getTotalPage();
+
+        if (page > totalPage)
+            page = totalPage;
+
+        paginationDTO.setPagination(totalPage, page);
+
         Integer offset = size * (page - 1);
-        List<PostIn> postIns = postInMapper.listByUserId(userId, offset , size);
+        List<PostIn> postIns = postInMapper.listByUserId(userId, offset, size);
         List<PostInDTO> postInDTOList = new ArrayList<>();
-        for(PostIn postIn : postIns)
-        {
+        for (PostIn postIn : postIns) {
             User user = userMapper.searchById(postIn.getCreator());
             PostInDTO postInDTO = new PostInDTO();
             BeanUtils.copyProperties(postIn, postInDTO);

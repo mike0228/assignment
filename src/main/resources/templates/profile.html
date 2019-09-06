@@ -25,7 +25,9 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading" th:text="${postIn.title}"></h4>
-                    <span class="text-desc"><span th:text="${postIn.commentCount}"></span> 个回复 · <span th:text="${postIn.viewCount}"></span>次浏览 · <span th:text="${#dates.format(postIn.gmtCreate,'dd MMMM yyyy')}"></span> </span>
+                    <span class="text-desc"><span th:text="${postIn.commentCount}"></span> 个回复 · <span
+                            th:text="${postIn.viewCount}"></span>次浏览 · <span
+                            th:text="${#dates.format(postIn.gmtCreate,'dd MMMM yyyy')}"></span> </span>
                 </div>
             </div>
             <nav aria-label="Page navigation">
@@ -40,7 +42,7 @@
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
-                    <li th:each="page : ${pagination.pages}"th:class="${pagination.page == page}? 'active'">
+                    <li th:each="page : ${pagination.pages}" th:class="${pagination.page == page}? 'active'">
                         <a th:href="@{'/profile/'+${section}(page=${page})}" th:text="${page}"></a></li>
                     <li th:if="${pagination.showNext}">
                         <a th:href="@{'/profile/'+${section}(page=${pagination.page + 1})}" aria-label="Next">
@@ -54,17 +56,17 @@
                     </li>
                 </ul>
             </nav>
-            </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-12 cl-xs-12">
-            <div class="list-group section">
-                <a href="/profile/posts"  th:class="${section == 'posts'} ? 'active list-group-item':'list-group-item'">
-                    我的问题
-                </a>
-                <a href="/profile/replies"  th:class="${section == 'replies'} ? 'active list-group-item':'list-group-item'">
-                    最新回复
-                    <span class="badge">14</span>
-                </a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 cl-xs-12">
+        <div class="list-group section">
+            <a href="/profile/posts" th:class="${section == 'posts'} ? 'active list-group-item':'list-group-item'">
+                我的问题
+            </a>
+            <a href="/profile/replies" th:class="${section == 'replies'} ? 'active list-group-item':'list-group-item'">
+                最新回复
+                <span class="badge">14</span>
+            </a>
         </div>
     </div>
 </div>
