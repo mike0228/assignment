@@ -1,7 +1,7 @@
 package com.example.assignment.support;
 
 import com.alibaba.fastjson.JSON;
-import com.example.assignment.dto.AccessToken;
+import com.example.assignment.dto.AccessTokenDTO;
 import com.example.assignment.dto.GithubUser;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import java.io.IOException;
 
 @Component
 public class GithubSupport {
-    public String getAccessToken(AccessToken accesstoken){
+    public String getAccessToken(AccessTokenDTO accesstoken){
         MediaType type = MediaType.get("application/json; charset=utf-8");
         OkHttpClient client = new OkHttpClient();
             RequestBody body = RequestBody.create(type, JSON.toJSONString(accesstoken));

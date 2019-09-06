@@ -1,9 +1,10 @@
-package com.example.assignment.model;
+package com.example.assignment.dto;
 
+import com.example.assignment.model.User;
 import lombok.Data;
 
 @Data
-public class Posting {
+public class PostInDTO {
     private Integer id;
     private String title;
     private String description;
@@ -14,4 +15,5 @@ public class Posting {
     private Integer commentCount;
     private Integer viewCount;
     private Integer likeCount;
+    private User user;
 }

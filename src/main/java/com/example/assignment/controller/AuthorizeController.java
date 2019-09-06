@@ -1,6 +1,6 @@
 package com.example.assignment.controller;
 
-import com.example.assignment.dto.AccessToken;
+import com.example.assignment.dto.AccessTokenDTO;
 import com.example.assignment.dto.GithubUser;
 import com.example.assignment.mapper.UserMapper;
 import com.example.assignment.model.User;
@@ -31,7 +31,7 @@ public class AuthorizeController {
     private UserMapper userMapper;
     @GetMapping("/callback")
     public  String callback(@RequestParam(name="code")String code , @RequestParam(name="state")String state, HttpServletResponse response) {
-        AccessToken accesstoken =new AccessToken();
+        AccessTokenDTO accesstoken =new AccessTokenDTO();
         accesstoken.setClient_id(clientId);
         accesstoken.setCode(code);
         accesstoken.setRedirect_uri(redirectUri);
@@ -48,6 +48,7 @@ public class AuthorizeController {
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
+            user.setAvatarUrl(githubUser.getAvatarUrl());
             userMapper.insert(user);
             response.addCookie(new Cookie("token",token));
             return "redirect:index";
