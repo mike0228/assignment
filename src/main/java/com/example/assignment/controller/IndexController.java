@@ -43,7 +43,7 @@ public class IndexController
         }
 
         PaginationDTO pagination = postInService.list(page,size);
-        model.addAttribute("postIns",pagination);
+        model.addAttribute("pagination",pagination);
         return "index";
     }
 }
