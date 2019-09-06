@@ -1,5 +1,6 @@
 package com.example.assignment.service;
 
+import com.example.assignment.dto.PaginationDTO;
 import com.example.assignment.dto.PostInDTO;
 import com.example.assignment.mapper.PostInMapper;
 import com.example.assignment.mapper.UserMapper;
@@ -18,9 +19,18 @@ public class PostInService {
     private PostInMapper postInMapper;
     @Autowired
     private UserMapper userMapper;
-    public List<PostInDTO> list() {
-        List<PostIn> postIns = postInMapper.list();
+    public PaginationDTO list(Integer page, Integer size) {
+        PaginationDTO paginationDTO = new PaginationDTO();
+        Integer totalCount = postInMapper.count();
+        paginationDTO.setPagination(totalCount,page,size);
+        if(page<1)
+            page = 1;
+        if(page > paginationDTO.getTotalPage())
+            page = paginationDTO.getTotalPage();
+        Integer offset = size * (page - 1);
+        List<PostIn> postIns = postInMapper.list(offset , size);
         List<PostInDTO> postInDTOList = new ArrayList<>();
+
         for(PostIn postIn : postIns)
         {
             User user = userMapper.searchById(postIn.getCreator());
@@ -29,6 +39,7 @@ public class PostInService {
             postInDTO.setUser(user);
             postInDTOList.add(postInDTO);
         }
-        return postInDTOList;
+        paginationDTO.setPostIn(postInDTOList);
+        return paginationDTO;
     }
 }
