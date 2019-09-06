@@ -1,1 +1,1 @@
-alter table POSTING rename to POSTIN;
+alter table POSTIN rename to POSTIN;
