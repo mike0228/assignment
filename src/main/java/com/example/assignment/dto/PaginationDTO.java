@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 public class PaginationDTO {
-    private List<PostInDTO> PostIn;
+    private List<PostDTO> Posts;
     private boolean showPrevious;
     private boolean showFirstPage;
     private boolean showNext;

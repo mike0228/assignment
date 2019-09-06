@@ -1,8 +1,8 @@
 package com.example.assignment.controller;
 
-import com.example.assignment.mapper.PostInMapper;
+import com.example.assignment.mapper.PostMapper;
 import com.example.assignment.mapper.UserMapper;
-import com.example.assignment.model.PostIn;
+import com.example.assignment.model.Post;
 import com.example.assignment.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class PublishController {
     @Autowired
-    private PostInMapper postInMapper;
+    private PostMapper postMapper;
 
     @Autowired
     private UserMapper userMapper;
@@ -67,14 +67,14 @@ public class PublishController {
             model.addAttribute("error", "标签不能为空");
             return "publish";
         }
-        PostIn postIn = new PostIn();
-        postIn.setTitle(title);
-        postIn.setDescription(description);
-        postIn.setTag(tag);
-        postIn.setCreator(user.getId());
-        postIn.setGmtCreate(System.currentTimeMillis());
-        postIn.setGmtModified(postIn.getGmtCreate());
-        postInMapper.create(postIn);
+        Post post = new Post();
+        post.setTitle(title);
+        post.setDescription(description);
+        post.setTag(tag);
+        post.setCreator(user.getId());
+        post.setGmtCreate(System.currentTimeMillis());
+        post.setGmtModified(post.getGmtCreate());
+        postMapper.create(post);
         return "redirect:/";
     }
 }

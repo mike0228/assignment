@@ -4,7 +4,7 @@ import com.example.assignment.model.User;
 import lombok.Data;
 
 @Data
-public class PostInDTO {
+public class PostDTO {
     private Integer id;
     private String title;
     private String description;

@@ -18,18 +18,21 @@
             <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>浏览</h2>
             <hr>
 
-            <div class="media" th:each="postIn : ${pagination.postIn}">
+            <div class="media" th:each="post : ${pagination.posts}">
                 <div class="media-left">
                     <a href="#">
                         <img class="media-object img-rounded avatar"
-                             th:src="${postIn.user.avatarUrl}">
+                             th:src="${post.user.avatarUrl}">
                     </a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading" th:text="${postIn.title}"></h4>
-                    <!--/*@thymesVar id="description" type=""*/-->
-                    <span th:text="${postIn.description}"></span><br>
-                    <span class="text-desc"><span th:text="${postIn.commentCount}"></span> 个回复 · <span th:text="${postIn.viewCount}"></span>次浏览 · <span th:text="${#dates.format(postIn.gmtCreate,'dd MMMM yyyy')}"></span> </span>
+                    <h4 class="media-heading" >
+                    <a th:href="@{'/post/' + ${post.id}}" th:text="${post.title}"></a>
+                    </h4>
+                    <span th:text="${post.description}"></span><br>
+                    <span class="text-desc"><span th:text="${post.commentCount}"></span> 个回复 · <span
+                            th:text="${post.viewCount}"></span>次浏览 · <span
+                            th:text="${#dates.format(post.gmtCreate,'dd MMMM yyyy')}"></span> </span>
                 </div>
             </div>
             <nav aria-label="Page navigation">
