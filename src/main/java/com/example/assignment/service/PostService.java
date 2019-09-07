@@ -4,6 +4,7 @@ import com.example.assignment.dto.PaginationDTO;
 import com.example.assignment.dto.PostDTO;
 import com.example.assignment.exception.CustomizeErrorCode;
 import com.example.assignment.exception.CustomizeException;
+import com.example.assignment.mapper.PostExtMapper;
 import com.example.assignment.mapper.PostMapper;
 import com.example.assignment.mapper.UserMapper;
 import com.example.assignment.model.Post;
@@ -23,6 +24,8 @@ public class PostService {
     private PostMapper postMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private PostExtMapper postExtMapper;
 
     public PaginationDTO list(Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
@@ -120,5 +123,12 @@ public class PostService {
                 throw new CustomizeException(CustomizeErrorCode.POST_NOT_FOUND);
             }
         }
+    }
+
+    public void incView(Integer id) {
+        Post post =new Post();
+        post.setId(id);
+        post.setViewCount(1);
+        postExtMapper.incView(post);
     }
 }
