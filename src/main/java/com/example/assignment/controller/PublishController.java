@@ -5,6 +5,7 @@ import com.example.assignment.mapper.PostMapper;
 import com.example.assignment.mapper.UserMapper;
 import com.example.assignment.model.Post;
 import com.example.assignment.model.User;
+import com.example.assignment.model.UserExample;
 import com.example.assignment.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,7 +61,9 @@ public class PublishController {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("token")) {
                     String token = cookie.getValue();
-                    user = userMapper.searchByToken(token);
+                    UserExample userExample = new UserExample();
+                    userExample.createCriteria().andTokenEqualTo(token);
+                    user = userMapper.selectByExample(userExample).get(0);
                     if (user != null) {
                         request.getSession().setAttribute("user", user);
                     }

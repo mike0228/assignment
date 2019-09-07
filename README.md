@@ -32,3 +32,5 @@
 * 请从语义上确认html的布局。。。。。。不要只是从浏览器里查看布局
 ##9/7 11:37
 *  修复了编辑功能和注销账号
+*命令行输入 mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+*添加了mybatis 不需要在写select，update等

@@ -5,7 +5,9 @@ import com.example.assignment.dto.PostDTO;
 import com.example.assignment.mapper.PostMapper;
 import com.example.assignment.mapper.UserMapper;
 import com.example.assignment.model.Post;
+import com.example.assignment.model.PostExample;
 import com.example.assignment.model.User;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +25,7 @@ public class PostService {
     public PaginationDTO list(Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalPage;
-        Integer totalCount = postMapper.count();
+        Integer totalCount = (int)postMapper.countByExample(new PostExample());
         if (totalCount % size == 0) {
             totalPage = totalCount / size;
         } else {
@@ -38,11 +40,11 @@ public class PostService {
             page = totalPage;
         paginationDTO.setPagination(totalPage, page);
         Integer offset = size * (page - 1);
-        List<Post> posts = postMapper.list(offset, size);
+        List<Post> posts = postMapper.selectByExampleWithRowbounds(new PostExample(),new RowBounds(offset, size));
         List<PostDTO> postDTOList = new ArrayList<>();
 
         for (Post post : posts) {
-            User user = userMapper.searchById(post.getCreator());
+            User user = userMapper.selectByPrimaryKey(post.getCreator());
             PostDTO postDTO = new PostDTO();
             BeanUtils.copyProperties(post, postDTO);
             postDTO.setUser(user);
@@ -55,7 +57,9 @@ public class PostService {
     public PaginationDTO list(Integer userId, Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalPage;
-        Integer totalCount = postMapper.countByUserId(userId);
+        PostExample postExample = new PostExample();
+        postExample.createCriteria().andCreatorEqualTo(userId);
+        Integer totalCount = (int) postMapper.countByExample(postExample);
         if (totalCount % size == 0) {
             totalPage = totalCount / size;
         } else {
@@ -68,10 +72,12 @@ public class PostService {
 
         paginationDTO.setPagination(totalPage, page);
         Integer offset = size * (page - 1);
-        List<Post> posts = postMapper.listByUserId(userId, offset, size);
+        PostExample example = new PostExample();
+        example.createCriteria().andCreatorEqualTo(userId);
+        List<Post> posts = postMapper.selectByExampleWithRowbounds(example,new RowBounds(offset, size));
         List<PostDTO> postDTOList = new ArrayList<>();
         for (Post post : posts) {
-            User user = userMapper.searchById(post.getCreator());
+            User user = userMapper.selectByPrimaryKey(post.getCreator());
             PostDTO postDTO = new PostDTO();
             BeanUtils.copyProperties(post, postDTO);
             postDTO.setUser(user);
@@ -82,10 +88,10 @@ public class PostService {
     }
 
     public PostDTO getById(Integer id) {
-        Post post = postMapper.getById(id);
+        Post post = postMapper.selectByPrimaryKey(id);
         PostDTO postDTO = new PostDTO();
         BeanUtils.copyProperties(post, postDTO);
-        User user = userMapper.searchById(post.getCreator());
+        User user = userMapper.selectByPrimaryKey(post.getCreator());
         postDTO.setUser(user);
         return postDTO;
     }
@@ -94,10 +100,17 @@ public class PostService {
         if (post.getId() == null){
             post.setGmtCreate(System.currentTimeMillis());
             post.setGmtModified(post.getGmtCreate());
-            postMapper.create(post);
+            postMapper.insert(post);
         }else {
             post.setGmtModified(post.getGmtCreate());
-            postMapper.update(post);
+            Post updatePost = new Post();
+            updatePost.setGmtModified(System.currentTimeMillis());
+            updatePost.setTitle(post.getTitle());
+            updatePost.setDescription(post.getDescription());
+            updatePost.setTag(post.getTag());
+            PostExample example = new PostExample();
+            example.createCriteria().andIdEqualTo(post.getId());
+            postMapper.updateByExampleSelective(updatePost, example);
         }
     }
 }
