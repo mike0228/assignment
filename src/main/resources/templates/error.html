@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>敢心论坛</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/css/BraveHeart.css"/>
+    <script src="//bootstrap.min.js" type="application/javascript"></script>
+
+</head>
+<body>
+<div th:insert="~{navigation :: nav}"></div>
+        <div class="jumbotron">
+            <div class = "col-md-offset-3 col-lg-offset-3 col-xl-offset-3">
+            <h1>很抱歉，可能网页出现了一些问题</h1>
+                <div class = "col-md-offset-3 col-lg-offset-3 col-xl-offset-3">
+                    <p th:text="${message}" >请稍后重试</p>
+                </div>
+                <div class = "col-md-offset-4 col-lg-offset-4 col-xl-offset-4">
+                    <p><a class="btn btn-primary btn-lg" href="/" role="button" >回到主页</a></p>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

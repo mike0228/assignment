@@ -2,6 +2,8 @@ package com.example.assignment.service;
 
 import com.example.assignment.dto.PaginationDTO;
 import com.example.assignment.dto.PostDTO;
+import com.example.assignment.exception.CustomizeErrorCode;
+import com.example.assignment.exception.CustomizeException;
 import com.example.assignment.mapper.PostMapper;
 import com.example.assignment.mapper.UserMapper;
 import com.example.assignment.model.Post;
@@ -89,6 +91,9 @@ public class PostService {
 
     public PostDTO getById(Integer id) {
         Post post = postMapper.selectByPrimaryKey(id);
+        if(post==null){
+            throw new CustomizeException(CustomizeErrorCode.POST_NOT_FOUND);
+        }
         PostDTO postDTO = new PostDTO();
         BeanUtils.copyProperties(post, postDTO);
         User user = userMapper.selectByPrimaryKey(post.getCreator());
@@ -110,7 +115,10 @@ public class PostService {
             updatePost.setTag(post.getTag());
             PostExample example = new PostExample();
             example.createCriteria().andIdEqualTo(post.getId());
-            postMapper.updateByExampleSelective(updatePost, example);
+            int update = postMapper.updateByExampleSelective(updatePost, example);
+            if(update != 1){
+                throw new CustomizeException(CustomizeErrorCode.POST_NOT_FOUND);
+            }
         }
     }
 }
