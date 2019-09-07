@@ -1,13 +1,16 @@
 package com.example.assignment.controller;
 
+import com.example.assignment.dto.PostDTO;
 import com.example.assignment.mapper.PostMapper;
 import com.example.assignment.mapper.UserMapper;
 import com.example.assignment.model.Post;
 import com.example.assignment.model.User;
+import com.example.assignment.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,8 +19,20 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class PublishController {
+
     @Autowired
-    private PostMapper postMapper;
+    private PostService postService;
+
+    @GetMapping("/publish/{id}")
+    public String edit(@PathVariable(name = "id")Integer id ,
+                       Model model){
+        PostDTO post= postService.getById(id);
+        model.addAttribute("title", post.getTitle());
+        model.addAttribute("tag", post.getTag());
+        model.addAttribute("description", post.getDescription());
+        model.addAttribute("id",post.getId());
+        return "publish";
+    }
 
     @Autowired
     private UserMapper userMapper;
@@ -32,6 +47,7 @@ public class PublishController {
             @RequestParam(value = "title", required = false) String title,
             @RequestParam(value = "description", required = false) String description,
             @RequestParam(value = "tag", required = false) String tag,
+            @RequestParam(value = "id", required = false)Integer id,
             HttpServletRequest request,
             Model model) {
         model.addAttribute("title", title);
@@ -72,9 +88,8 @@ public class PublishController {
         post.setDescription(description);
         post.setTag(tag);
         post.setCreator(user.getId());
-        post.setGmtCreate(System.currentTimeMillis());
-        post.setGmtModified(post.getGmtCreate());
-        postMapper.create(post);
+        post.setId(id);
+        postService.createOrUpdate(post);
         return "redirect:/";
     }
 }

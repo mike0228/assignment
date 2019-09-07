@@ -1,10 +1,7 @@
 package com.example.assignment.mapper;
 
 import com.example.assignment.model.Post;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -28,4 +25,6 @@ public interface PostMapper {
     @Select("select count(1) from posts where creator = #{userId}")
     Integer countByUserId(@Param(value = "userId") Integer userId);
 
+    @Update("update posts set title = #{title}, description = #{description}, gmt_modified = #{gmtModified}, tag = #{tag} where id = #{id}")
+    void update(Post post);
 }
