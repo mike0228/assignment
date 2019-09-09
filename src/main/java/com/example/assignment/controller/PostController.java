@@ -15,7 +15,7 @@ public class PostController {
     private PostService postService;
 
     @GetMapping("/post/{id}")
-    public String post(@PathVariable(name = "id") Integer id, Model model){
+    public String post(@PathVariable(name = "id") Long id, Model model){
         PostDTO postDTO = postService.getById(id);
         postService.incView(id);
         model.addAttribute("post", postDTO);

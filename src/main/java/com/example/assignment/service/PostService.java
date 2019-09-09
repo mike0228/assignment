@@ -59,7 +59,7 @@ public class PostService {
         return paginationDTO;
     }
 
-    public PaginationDTO list(Integer userId, Integer page, Integer size) {
+    public PaginationDTO list(Long userId, Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalPage;
         PostExample postExample = new PostExample();
@@ -92,7 +92,7 @@ public class PostService {
         return paginationDTO;
     }
 
-    public PostDTO getById(Integer id) {
+    public PostDTO getById(Long id) {
         Post post = postMapper.selectByPrimaryKey(id);
         if(post==null){
             throw new CustomizeException(CustomizeErrorCode.POST_NOT_FOUND);
@@ -108,6 +108,9 @@ public class PostService {
         if (post.getId() == null){
             post.setGmtCreate(System.currentTimeMillis());
             post.setGmtModified(post.getGmtCreate());
+            post.setViewCount(0);
+            post.setLikeCount(0);
+            post.setCommentCount(0);
             postMapper.insert(post);
         }else {
             post.setGmtModified(post.getGmtCreate());
@@ -125,7 +128,7 @@ public class PostService {
         }
     }
 
-    public void incView(Integer id) {
+    public void incView(Long id) {
         Post post =new Post();
         post.setId(id);
         post.setViewCount(1);
