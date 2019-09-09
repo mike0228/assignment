@@ -3,7 +3,7 @@ package com.example.assignment.dto;
 import lombok.Data;
 
 @Data
-public class CommentDTO {
+public class CommentCreateDTO {
     private Long parentId;
     private String content;
     private Integer type;

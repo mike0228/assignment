@@ -1,6 +1,6 @@
 create table POSTS
 (
-	id int auto_increment,
+	id bigint auto_increment,
 	title varchar(60),
 	description text,
 	gmt_create bigint,
