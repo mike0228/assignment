@@ -47,8 +47,30 @@ public class CommentController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/comment/giveLike", method = RequestMethod.POST)
-    public Object giveLike(@RequestBody CommentDTO commentDTO,
+    @RequestMapping(value = "/comment/incLike", method = RequestMethod.POST)
+    public Object changeLike(@RequestBody CommentDTO commentDTO,
+                           HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
+            return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
+        }
+        commentDTO.setUser(user);
+        Comment comment = commentService.getCommentById(commentDTO.getId());
+        comment.setLikeCount(1L);
+        if(commentService.isLiked(commentDTO.getId(),commentDTO.getUser().getId())) {
+            commentService.deleteLike(commentDTO.getId(), commentDTO.getUser().getId());
+            commentService.decLikeCount(comment);
+        }
+        else{
+            commentService.addLike(commentDTO.getId(), commentDTO.getUser().getId());
+            commentService.incLikeCount(comment);
+        }
+        return ResultDTO.okOf();
+    }
+    /*
+    @ResponseBody
+    @RequestMapping(value = "/comment/decLike", method = RequestMethod.POST)
+    public Object decLikeCount(@RequestBody CommentDTO commentDTO,
                            HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
@@ -56,11 +78,10 @@ public class CommentController {
         }
         Comment comment = commentService.getCommentById(commentDTO.getId());
         comment.setLikeCount(1L);
-        commentService.giveLike(comment);
+        commentService.decLikeCount(comment);
         return ResultDTO.okOf();
     }
-
-
+    */
     @ResponseBody
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
     public ResultDTO comments(@PathVariable(name = "id") Long id) {

@@ -95,18 +95,15 @@ function collapseComments(e) {
     }
 }
 
-function giveLike(e) {
+function giveOrDeleteLike(e) {
     var commentId = e.getAttribute("data-id");
-    var userId = e.getAttribute("data-userId")
-    debugger;
+    e.classList.remove("active");
     $.ajax({
         type: "POST",
-        url: "/comment/giveLike/",
+        url: "/comment/incLike/",
         contentType: 'application/json',
         data: JSON.stringify({
             "id": commentId,
-            "type":1
-            //"userId":userId
         }),
         success: function (response) {
             if (response.code == 200) {

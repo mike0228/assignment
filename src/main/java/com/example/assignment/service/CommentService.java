@@ -29,6 +29,8 @@ public class CommentService {
     private UserMapper userMapper;
     @Autowired
     private CommentExtMapper commentExtMapper;
+    @Autowired
+    private LikeMapper likeMapper;
     @Transactional
     public void insert(Comment comment) {
         if (comment.getParentId() ==null || comment.getParentId() ==0){
@@ -88,7 +90,7 @@ public class CommentService {
     }
 
     @Transactional
-   public void giveLike(Comment comment){
+   public void incLikeCount(Comment comment){
         if (comment.getParentId() ==null || comment.getParentId() ==0){
             throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
         }
@@ -116,4 +118,52 @@ public class CommentService {
         }
         return  comment;
     }
+
+    public void decLikeCount(Comment comment) {
+        if (comment.getParentId() ==null || comment.getParentId() ==0){
+            throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
+        }
+        if (comment.getType() == null || !CommentTypeEnum.isExist(comment.getType())) {
+            throw new CustomizeException(CustomizeErrorCode.TYPE_PARAM_WRONG);
+        }
+        if (comment.getType() == CommentTypeEnum.COMMENT.getType()) {
+            Comment dbComment = commentMapper.selectByPrimaryKey(comment.getParentId());
+            if (dbComment == null) {
+                throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
+            }
+        }else {
+            Post post = postMapper.selectByPrimaryKey(comment.getParentId());
+            if (post == null){
+                throw new CustomizeException(CustomizeErrorCode.POST_NOT_FOUND);
+            }
+            commentExtMapper.decLikeCount(comment);
+        }
+
+    }
+
+    public void addLike(Long commentId, Long userId) {
+        Like like = new Like();
+        like.setCommentId(commentId);
+        like.setUserId(userId);
+        likeMapper.insert(like);
+    }
+    public boolean isLiked(Long commentId, Long userId){
+        LikeExample likeExample = new LikeExample();
+        LikeExample.Criteria criteria = likeExample.createCriteria();
+        criteria.andCommentIdEqualTo(commentId);
+        criteria.andUserIdEqualTo(userId);
+        List<?>list= likeMapper.selectByExample(likeExample);
+        if( list.size() == 0)
+            return false;
+        else
+            return true;
+    }
+
+    public void deleteLike(Long commentId, Long userId){
+        LikeExample likeExample = new LikeExample();
+        LikeExample.Criteria criteria = likeExample.createCriteria();
+        criteria.andCommentIdEqualTo(commentId).andUserIdEqualTo(userId);
+        likeMapper.deleteByExample(likeExample);
+    }
 }
+

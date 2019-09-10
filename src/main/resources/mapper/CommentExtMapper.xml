@@ -28,4 +28,11 @@
         set LIKE_COUNT= LIKE_COUNT + #{likeCount,jdbcType=INTEGER}
         where id = #{id}
     </update>
+
+    <update id="decLikeCount" parameterType="com.example.assignment.model.Comment">
+        update COMMENT
+        set LIKE_COUNT= LIKE_COUNT - #{likeCount,jdbcType=INTEGER}
+        where id = #{id}
+    </update>
+
 </mapper>
