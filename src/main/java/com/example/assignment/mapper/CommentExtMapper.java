@@ -8,5 +8,6 @@ import org.apache.ibatis.session.RowBounds;
 import java.util.List;
 
 public interface CommentExtMapper {
-int incCommentCount(Comment comment);
+    int incCommentCount(Comment comment);
+    int incLikeCount(Comment comment);
 }

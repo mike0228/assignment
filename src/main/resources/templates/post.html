@@ -52,7 +52,8 @@
                             </h4>
                             <div th:text="${comment.content}"></div>
                             <div class="menu">
-                                <span class="glyphicon glyphicon-thumbs-up icon"></span>
+                                <span class="glyphicon glyphicon-thumbs-up icon" th:data-id="${comment.id}" th:data-userId="${comment.user.id}"
+                                onclick="giveLike(this)" th:text="${comment.likeCount}"></span>
                                 <span class="glyphicon glyphicon-comment icon" th:data-id="${comment.id}"
                                       onclick="collapseComments(this)" th:text="${comment.commentCount}"></span>
                                 <span class="pull-right"

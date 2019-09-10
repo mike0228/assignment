@@ -29,7 +29,6 @@ function comment2target(targetId, type, content) {
                 }
 
             }
-            console.log(response);
         },
         dataType: "json"
     });
@@ -39,7 +38,6 @@ function comment2target(targetId, type, content) {
 function comment(e) {
     var commentId = e.getAttribute("data-id");
     var content = $("#input-" + commentId).val();
-    debugger;
     comment2target(commentId, 2, content);
 }
 
@@ -95,4 +93,36 @@ function collapseComments(e) {
             e.classList.add("active");
         }
     }
+}
+
+function giveLike(e) {
+    var commentId = e.getAttribute("data-id");
+    var userId = e.getAttribute("data-userId")
+    debugger;
+    $.ajax({
+        type: "POST",
+        url: "/comment/giveLike/",
+        contentType: 'application/json',
+        data: JSON.stringify({
+            "id": commentId,
+            "type":1
+            //"userId":userId
+        }),
+        success: function (response) {
+            if (response.code == 200) {
+                window.location.reload();
+            } else {
+                if (response.code == 2003) {
+                    var isAccepted = confirm(response.message);
+                    if (isAccepted) {
+                        window.open("https://github.com/login/oauth/authorize?client_id=b5e2cfb5f4928aaa5290&redirect_uri=http://localhost:8080/callback&scope=user&state=8848")
+                        window.localStorage.setItem("closable", true);
+                    }
+                } else {
+                    alert(response.message);
+                }
+            }
+        },
+        dataType: "json"
+    })
 }

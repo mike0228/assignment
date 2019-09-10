@@ -86,4 +86,34 @@ public class CommentService {
 
         return commentDTOS;
     }
+
+    @Transactional
+   public void giveLike(Comment comment){
+        if (comment.getParentId() ==null || comment.getParentId() ==0){
+            throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
+        }
+        if (comment.getType() == null || !CommentTypeEnum.isExist(comment.getType())) {
+            throw new CustomizeException(CustomizeErrorCode.TYPE_PARAM_WRONG);
+        }
+        if (comment.getType() == CommentTypeEnum.COMMENT.getType()) {
+            Comment dbComment = commentMapper.selectByPrimaryKey(comment.getParentId());
+            if (dbComment == null) {
+                throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
+            }
+        }else {
+            Post post = postMapper.selectByPrimaryKey(comment.getParentId());
+            if (post == null){
+                throw new CustomizeException(CustomizeErrorCode.POST_NOT_FOUND);
+            }
+            commentExtMapper.incLikeCount(comment);
+        }
+    }
+
+    public Comment getCommentById(Long id) {
+        Comment comment = commentMapper.selectByPrimaryKey(id);
+        if(comment==null){
+            throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
+        }
+        return  comment;
+    }
 }
