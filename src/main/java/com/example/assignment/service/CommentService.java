@@ -6,7 +6,6 @@ import com.example.assignment.exception.CustomizeErrorCode;
 import com.example.assignment.exception.CustomizeException;
 import com.example.assignment.mapper.*;
 import com.example.assignment.model.*;
-import javafx.geometry.Pos;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +27,8 @@ public class CommentService {
     private PostExtMapper postExtMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private CommentExtMapper commentExtMapper;
     @Transactional
     public void insert(Comment comment) {
         if (comment.getParentId() ==null || comment.getParentId() ==0){
@@ -42,6 +43,10 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
             commentMapper.insert(comment);
+            Comment parentComment = new Comment();
+            parentComment.setId(comment.getParentId());
+            parentComment.setCommentCount(1);
+            commentExtMapper.incCommentCount(parentComment);
         }else {
             Post post = postMapper.selectByPrimaryKey(comment.getParentId());
             if (post == null){
@@ -53,12 +58,12 @@ public class CommentService {
             }
     }
 
-    public List<CommentDTO> listByPostId(Long id) {
+    public List<CommentDTO> listByTargetId(Long id, CommentTypeEnum type) {
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria()
                 .andParentIdEqualTo(id)
-                .andTypeEqualTo(CommentTypeEnum.POST.getType());
-        commentExample.setOrderByClause("gmt_create desc");
+                .andTypeEqualTo(type.getType());
+        commentExample.setOrderByClause("gmt_create asc");
         List<Comment> comments = commentMapper.selectByExample(commentExample);
 
         if (comments.size() == 0) {

@@ -1,8 +1,8 @@
 package com.example.assignment.controller;
 
-import com.example.assignment.dto.CommentCreateDTO;
 import com.example.assignment.dto.CommentDTO;
 import com.example.assignment.dto.PostDTO;
+import com.example.assignment.enums.CommentTypeEnum;
 import com.example.assignment.service.CommentService;
 import com.example.assignment.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class PostController {
     @GetMapping("/post/{id}")
     public String post(@PathVariable(name = "id") Long id, Model model){
         PostDTO postDTO = postService.getById(id);
-        List<CommentDTO> comments= commentService.listByPostId(id);
+        List<CommentDTO> comments= commentService.listByTargetId(id, CommentTypeEnum.POST);
         postService.incView(id);
         model.addAttribute("post", postDTO);
         model.addAttribute("comments", comments);

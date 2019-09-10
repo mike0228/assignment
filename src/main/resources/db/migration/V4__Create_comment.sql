@@ -6,7 +6,9 @@ create table comment
 	commentator int not null,
 	gmt_create BIGINT not null,
 	gmt_modified BIGINT not null,
-	like_count BIGINT default 0,
+	like_count BIGINT default 0 not null,
+    comment_count int default 0 not
+        null,
 	constraint comment_pk
 		primary key (id)
 );
