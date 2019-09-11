@@ -10,7 +10,8 @@ public enum CustomizeErrorCode implements InterfaceCustomizeErrorCode{
     COMMENT_NOT_FOUND(2006,"回复的评论不存在"),
     CONTENT_IS_EMPTY(2007,"回复不能为空"),
     READ_NOTIFICATION_FAIL(2008,"非法读取"),
-    NOTIFICATION_NOT_FOUND(2009,"消息不存在或已被删除")
+    NOTIFICATION_NOT_FOUND(2009,"消息不存在或已被删除"),
+    FILE_UPLOAD_ERROR(2010,"文件上传错误")
     ;
 
     @Override
