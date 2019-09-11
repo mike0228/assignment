@@ -107,7 +107,9 @@ function giveOrDeleteLike(e) {
         }),
         success: function (response) {
             if (response.code == 200) {
-                window.location.reload();
+                //window.location.reload();
+                e.innerHTML = response.data.count;
+
             } else {
                 if (response.code == 2003) {
                     var isAccepted = confirm(response.message);

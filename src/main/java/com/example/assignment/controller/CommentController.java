@@ -2,6 +2,7 @@ package com.example.assignment.controller;
 
 import com.example.assignment.dto.CommentCreateDTO;
 import com.example.assignment.dto.CommentDTO;
+import com.example.assignment.dto.LikeCountDTO;
 import com.example.assignment.dto.ResultDTO;
 import com.example.assignment.enums.CommentTypeEnum;
 import com.example.assignment.exception.CustomizeErrorCode;
@@ -48,7 +49,7 @@ public class CommentController {
 
     @ResponseBody
     @RequestMapping(value = "/comment/incLike", method = RequestMethod.POST)
-    public Object changeLike(@RequestBody CommentDTO commentDTO,
+    public ResultDTO changeLike(@RequestBody CommentDTO commentDTO,
                            HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
@@ -65,7 +66,10 @@ public class CommentController {
             commentService.addLike(commentDTO.getId(), commentDTO.getUser().getId());
             commentService.incLikeCount(comment);
         }
-        return ResultDTO.okOf();
+
+        LikeCountDTO likeCountDTO = new LikeCountDTO();
+        likeCountDTO.setCount(commentService.getCommentById(commentDTO.getId()).getLikeCount());
+        return ResultDTO.okOf(likeCountDTO);
     }
     /*
     @ResponseBody
