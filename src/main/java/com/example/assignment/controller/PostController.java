@@ -25,10 +25,12 @@ public class PostController {
     @GetMapping("/post/{id}")
     public String post(@PathVariable(name = "id") Long id, Model model){
         PostDTO postDTO = postService.getById(id);
+        List<PostDTO> relatesPosts = postService.selectRelated(postDTO);
         List<CommentDTO> comments= commentService.listByTargetId(id, CommentTypeEnum.POST);
         postService.incView(id);
         model.addAttribute("post", postDTO);
         model.addAttribute("comments", comments);
+        model.addAttribute("relatedPosts",relatesPosts);
         return "post";
     }
 }

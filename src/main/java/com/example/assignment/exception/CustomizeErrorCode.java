@@ -8,7 +8,9 @@ public enum CustomizeErrorCode implements InterfaceCustomizeErrorCode{
     SYS_ERROR(2004,"服务器炸了，稍等一会再来吧"),
     TYPE_PARAM_WRONG(2005,"回复类型错误或不存在"),
     COMMENT_NOT_FOUND(2006,"回复的评论不存在"),
-    CONTENT_IS_EMPTY(2007,"回复不能为空")
+    CONTENT_IS_EMPTY(2007,"回复不能为空"),
+    READ_NOTIFICATION_FAIL(2008,"非法读取"),
+    NOTIFICATION_NOT_FOUND(2009,"消息不存在或已被删除")
     ;
 
     @Override

@@ -94,3 +94,19 @@ body {
 .sub-comments .btn {
     margin: 10px 0;
 }
+
+.post-tag {
+    margin-right: 3px;
+}
+
+.publish-tag-tab{
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.publish-tag-tab .label-info{
+    white-space: normal;
+    margin: 5px 5px;
+    display: inline-block;
+}

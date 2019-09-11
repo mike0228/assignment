@@ -10,13 +10,16 @@ import com.example.assignment.mapper.UserMapper;
 import com.example.assignment.model.Post;
 import com.example.assignment.model.PostExample;
 import com.example.assignment.model.User;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -45,7 +48,9 @@ public class PostService {
             page = totalPage;
         paginationDTO.setPagination(totalPage, page);
         Integer offset = size * (page - 1);
-        List<Post> posts = postMapper.selectByExampleWithRowbounds(new PostExample(),new RowBounds(offset, size));
+        PostExample postExample = new PostExample();
+        postExample.setOrderByClause("gmt_create desc");
+        List<Post> posts = postMapper.selectByExampleWithRowbounds(postExample,new RowBounds(offset, size));
         List<PostDTO> postDTOList = new ArrayList<>();
 
         for (Post post : posts) {
@@ -55,7 +60,7 @@ public class PostService {
             postDTO.setUser(user);
             postDTOList.add(postDTO);
         }
-        paginationDTO.setPosts(postDTOList);
+        paginationDTO.setData(postDTOList);
         return paginationDTO;
     }
 
@@ -88,7 +93,7 @@ public class PostService {
             postDTO.setUser(user);
             postDTOList.add(postDTO);
         }
-        paginationDTO.setPosts(postDTOList);
+        paginationDTO.setData(postDTOList);
         return paginationDTO;
     }
 
@@ -133,5 +138,23 @@ public class PostService {
         post.setId(id);
         post.setViewCount(1);
         postExtMapper.incView(post);
+    }
+
+    public List<PostDTO> selectRelated(PostDTO queryDTO) {
+        if(StringUtils.isBlank(queryDTO.getTag())){
+            return new ArrayList<>();
+        }
+        String[] tags = StringUtils.split(queryDTO.getTag(), ",");
+        String regexpTag = Arrays.stream(tags).collect(Collectors.joining("|"));
+        Post post = new Post();
+        post.setId(queryDTO.getId());
+        post.setTag(regexpTag);
+        List<Post> posts = postExtMapper.selectRelated(post);
+        List<PostDTO> postDTOS = posts.stream().map(q->{
+            PostDTO postDTO= new PostDTO();
+            BeanUtils.copyProperties(q,postDTO);
+            return postDTO;
+        }).collect(Collectors.toList());
+        return postDTOS;
     }
 }

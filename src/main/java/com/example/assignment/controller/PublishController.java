@@ -1,5 +1,6 @@
 package com.example.assignment.controller;
 
+import com.example.assignment.cache.TagCache;
 import com.example.assignment.dto.PostDTO;
 import com.example.assignment.mapper.PostMapper;
 import com.example.assignment.mapper.UserMapper;
@@ -7,6 +8,7 @@ import com.example.assignment.model.Post;
 import com.example.assignment.model.User;
 import com.example.assignment.model.UserExample;
 import com.example.assignment.service.PostService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +34,7 @@ public class PublishController {
         model.addAttribute("tag", post.getTag());
         model.addAttribute("description", post.getDescription());
         model.addAttribute("id",post.getId());
+        model.addAttribute("tags", TagCache.get());
         return "publish";
     }
 
@@ -39,7 +42,8 @@ public class PublishController {
     private UserMapper userMapper;
 
     @GetMapping("/publish")
-    public String publish() {
+    public String publish(Model model) {
+        model.addAttribute("tags", TagCache.get());
         return "publish";
     }
 
@@ -54,6 +58,7 @@ public class PublishController {
         model.addAttribute("title", title);
         model.addAttribute("tag", tag);
         model.addAttribute("description", description);
+        model.addAttribute("tags", TagCache.get());
         User user = null;
         Cookie[] cookies = request.getCookies();
         if (cookies != null && cookies.length != 0)
@@ -81,6 +86,11 @@ public class PublishController {
         if (description == null || description == "") {
             model.addAttribute("error", "内容不能为空");
             return "publish";
+        }
+        String invalid = TagCache.filterInvalid(tag);
+        if (StringUtils.isNotBlank(invalid)){
+            model.addAttribute("error","非法标签："+invalid);
+            return  "publish";
         }
         if (tag == null || tag == "") {
             model.addAttribute("error", "标签不能为空");

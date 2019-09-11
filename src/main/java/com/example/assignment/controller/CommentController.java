@@ -43,7 +43,7 @@ public class CommentController {
         comment.setCommentator(user.getId());
         comment.setLikeCount(0L);
         comment.setCommentCount(0);
-        commentService.insert(comment);
+        commentService.insert(comment,user);
         return ResultDTO.okOf();
     }
 
@@ -71,7 +71,7 @@ public class CommentController {
         likeCountDTO.setCount(commentService.getCommentById(commentDTO.getId()).getLikeCount());
         return ResultDTO.okOf(likeCountDTO);
     }
-    /*
+
     @ResponseBody
     @RequestMapping(value = "/comment/decLike", method = RequestMethod.POST)
     public Object decLikeCount(@RequestBody CommentDTO commentDTO,
@@ -85,7 +85,6 @@ public class CommentController {
         commentService.decLikeCount(comment);
         return ResultDTO.okOf();
     }
-    */
     @ResponseBody
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
     public ResultDTO comments(@PathVariable(name = "id") Long id) {
