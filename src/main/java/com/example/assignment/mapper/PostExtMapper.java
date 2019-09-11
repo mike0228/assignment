@@ -13,4 +13,6 @@ public interface PostExtMapper {
     Integer countBySearch(PostQueryDTO postQueryDTO);
 
     List<Post> selectBySearch(PostQueryDTO postQueryDTO);
+
+    List<Post> selectTopTen();
 }
