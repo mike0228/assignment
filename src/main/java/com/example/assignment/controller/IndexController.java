@@ -15,7 +15,7 @@ public class IndexController
 {
     @Autowired
     private PostService postService;
-    @GetMapping({"/","/index"})
+    @GetMapping({"/"})
     public String index(HttpServletRequest request, Model model,
                         @RequestParam(name = "page",defaultValue = "1")Integer page,
                         @RequestParam(name = "size",defaultValue = "8")Integer size,
