@@ -169,4 +169,16 @@ public class PostService {
         }).collect(Collectors.toList());
         return postDTOS;
     }
+
+    public List<PostDTO> listHotTopics() {
+        List<Post> hotTopics = postExtMapper.selectTopTen();
+        List<PostDTO> hotTopicDTOs = hotTopics.stream().map(q->{
+            PostDTO postDTO= new PostDTO();
+            User user = userMapper.selectByPrimaryKey(q.getCreator());
+            postDTO.setUser(user);
+            BeanUtils.copyProperties(q,postDTO);
+            return postDTO;
+        }).collect(Collectors.toList());
+        return hotTopicDTOs;
+    }
 }

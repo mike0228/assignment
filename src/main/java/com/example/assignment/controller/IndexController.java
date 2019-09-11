@@ -1,6 +1,8 @@
 package com.example.assignment.controller;
 
 import com.example.assignment.dto.PaginationDTO;
+import com.example.assignment.dto.PostDTO;
+import com.example.assignment.model.Post;
 import com.example.assignment.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class IndexController
@@ -22,8 +25,10 @@ public class IndexController
                         @RequestParam(name = "search",required = false)String search
     ) {
         PaginationDTO pagination = postService.list(search,page,size);
+        List<PostDTO> hotTopics = postService.listHotTopics();
         model.addAttribute("pagination",pagination);
         model.addAttribute("search",search);
+        model.addAttribute("hotTopics",hotTopics);
         return "index";
     }
 }

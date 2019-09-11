@@ -48,4 +48,11 @@
         </where>
         order by gmt_create desc limit #{page},#{size}
     </select>
+
+    <select id="selectTopTen" parameterType="com.example.assignment.dto.PostQueryDTO" resultMap="BaseResultMap">
+        select *
+        from POSTS
+        order by LIKE_COUNT desc limit 5
+    </select>
+
 </mapper>
