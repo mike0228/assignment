@@ -2,9 +2,9 @@ package com.example.assignment.service;
 
 import com.example.assignment.dto.PaginationDTO;
 import com.example.assignment.dto.PostDTO;
+import com.example.assignment.dto.PostQueryDTO;
 import com.example.assignment.exception.CustomizeErrorCode;
 import com.example.assignment.exception.CustomizeException;
-import com.example.assignment.mapper.CommentMapper;
 import com.example.assignment.mapper.PostExtMapper;
 import com.example.assignment.mapper.PostMapper;
 import com.example.assignment.mapper.UserMapper;
@@ -24,20 +24,26 @@ import java.util.stream.Collectors;
 
 @Service
 public class PostService {
-
     @Autowired
     private PostMapper postMapper;
     @Autowired
     private UserMapper userMapper;
     @Autowired
     private PostExtMapper postExtMapper;
-    @Autowired
-    private CommentMapper commentMapper;
 
-    public PaginationDTO list(Integer page, Integer size) {
+    public PaginationDTO list(String search,Integer page, Integer size) {
+        if(StringUtils.isNotBlank(search)){
+            String[] tags = StringUtils.split(search, " ");
+            search  = Arrays.stream(tags).collect(Collectors.joining("|"));
+        }
+
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalPage;
-        Integer totalCount = (int)postMapper.countByExample(new PostExample());
+
+        PostQueryDTO postQueryDTO = new PostQueryDTO();
+        postQueryDTO.setSearch(search);
+        Integer totalCount = postExtMapper.countBySearch(postQueryDTO);
+
         if (totalCount % size == 0) {
             totalPage = totalCount / size;
         } else {
@@ -54,7 +60,9 @@ public class PostService {
         Integer offset = size * (page - 1);
         PostExample postExample = new PostExample();
         postExample.setOrderByClause("gmt_create desc");
-        List<Post> posts = postMapper.selectByExampleWithRowbounds(postExample,new RowBounds(offset, size));
+        postQueryDTO.setSize(size);
+        postQueryDTO.setPage(offset);
+        List<Post> posts = postExtMapper.selectBySearch(postQueryDTO);
         List<PostDTO> postDTOList = new ArrayList<>();
 
         for (Post post : posts) {
@@ -162,9 +170,21 @@ public class PostService {
         return postDTOS;
     }
 
+    public List<PostDTO> listHotTopics() {
+        List<Post> hotTopics = postExtMapper.selectTopTen();
+        List<PostDTO> hotTopicDTOs = hotTopics.stream().map(q->{
+            PostDTO postDTO= new PostDTO();
+            User user = userMapper.selectByPrimaryKey(q.getCreator());
+            postDTO.setUser(user);
+            BeanUtils.copyProperties(q,postDTO);
+            return postDTO;
+        }).collect(Collectors.toList());
+        return hotTopicDTOs;
+    }
+
     public void deleteById(Long id, Boolean isAdministrator) {
         if (isAdministrator != true) {
-            throw new CustomizeException(CustomizeErrorCode.UNABLE_TO_DELETE);
+            throw new CustomizeException(CustomizeErrorCode.CANNOT_DELETE);
         }
         postMapper.deleteByPrimaryKey(id);
     }

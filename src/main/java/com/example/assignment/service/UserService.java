@@ -15,9 +15,9 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserMapper userMapper;
+
     @Autowired
     private AdminMapper adminMapper;
-
 
     public void createOrUpdate(User user) {
         UserExample userExample = new UserExample();
