@@ -35,9 +35,10 @@ public class CommentService {
     private LikeMapper likeMapper;
     @Autowired
     private NotificationMapper notificationMapper;
+
     @Transactional
     public void insert(Comment comment, User commentator) {
-        if (comment.getParentId() ==null || comment.getParentId() ==0){
+        if (comment.getParentId() == null || comment.getParentId() == 0) {
             throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
         }
         if (comment.getType() == null || !CommentTypeEnum.isExist(comment.getType())) {
@@ -57,21 +58,25 @@ public class CommentService {
             parentComment.setId(comment.getParentId());
             parentComment.setCommentCount(1);
             commentExtMapper.incCommentCount(parentComment);
-            creatNotify(comment, dbComment.getCommentator(), commentator.getName(), post.getTitle(), NotificationTypeEnum.REPLY_COMMENT,post.getId());
+            creatNotify(comment, dbComment.getCommentator(), commentator.getName(), post.getTitle(), NotificationTypeEnum.REPLY_COMMENT, post.getId());
 
-            }else {
+        } else {
             Post post = postMapper.selectByPrimaryKey(comment.getParentId());
-            if (post == null){
+            if (post == null) {
                 throw new CustomizeException(CustomizeErrorCode.POST_NOT_FOUND);
             }
+            comment.setCommentCount(0);
             commentMapper.insert(comment);
             post.setCommentCount(1);
             postExtMapper.incCommentCount(post);
-            creatNotify(comment , post.getCreator(), commentator.getName(), post.getTitle(),NotificationTypeEnum.REPLY_POST, post.getId());
-            }
+            creatNotify(comment, post.getCreator(), commentator.getName(), post.getTitle(), NotificationTypeEnum.REPLY_POST, post.getId());
+        }
     }
 
     private void creatNotify(Comment comment, Long receiver, String notifierName, String outerTitle, NotificationTypeEnum notificationType, Long outerId) {
+        if (receiver == comment.getCommentator()) {
+            return;
+        }
         Notification notification = new Notification();
         notification.setGmtCreate(System.currentTimeMillis());
         notification.setType(notificationType.getType());
@@ -91,7 +96,6 @@ public class CommentService {
                 .andTypeEqualTo(type.getType());
         commentExample.setOrderByClause("gmt_create asc");
         List<Comment> comments = commentMapper.selectByExample(commentExample);
-
         if (comments.size() == 0) {
             return new ArrayList<>();
         }
@@ -105,17 +109,18 @@ public class CommentService {
         Map<Long, User> userMap = users.stream().collect(Collectors.toMap(user -> user.getId(), user -> user));
         List<CommentDTO> commentDTOS = comments.stream().map(comment -> {
             CommentDTO commentDTO = new CommentDTO();
-            BeanUtils.copyProperties(comment,commentDTO);
-            commentDTO.setUser(userMap.get(comment.getCommentator()));
+            BeanUtils.copyProperties(comment, commentDTO);
+            User user = userMap.get(comment.getCommentator());
+            user.setToken("");
+            commentDTO.setUser(user);
             return commentDTO;
         }).collect(Collectors.toList());
-
         return commentDTOS;
     }
 
     @Transactional
-   public void incLikeCount(Comment comment){
-        if (comment.getParentId() ==null || comment.getParentId() ==0){
+    public void incLikeCount(Comment comment) {
+        if (comment.getParentId() == null || comment.getParentId() == 0) {
             throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
         }
         if (comment.getType() == null || !CommentTypeEnum.isExist(comment.getType())) {
@@ -126,9 +131,9 @@ public class CommentService {
             if (dbComment == null) {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
-        }else {
+        } else {
             Post post = postMapper.selectByPrimaryKey(comment.getParentId());
-            if (post == null){
+            if (post == null) {
                 throw new CustomizeException(CustomizeErrorCode.POST_NOT_FOUND);
             }
             commentExtMapper.incLikeCount(comment);
@@ -137,14 +142,14 @@ public class CommentService {
 
     public Comment getCommentById(Long id) {
         Comment comment = commentMapper.selectByPrimaryKey(id);
-        if(comment==null){
+        if (comment == null) {
             throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
         }
-        return  comment;
+        return comment;
     }
 
     public void decLikeCount(Comment comment) {
-        if (comment.getParentId() ==null || comment.getParentId() ==0){
+        if (comment.getParentId() == null || comment.getParentId() == 0) {
             throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
         }
         if (comment.getType() == null || !CommentTypeEnum.isExist(comment.getType())) {
@@ -155,13 +160,14 @@ public class CommentService {
             if (dbComment == null) {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
-        }else {
+        } else {
             Post post = postMapper.selectByPrimaryKey(comment.getParentId());
-            if (post == null){
+            if (post == null) {
                 throw new CustomizeException(CustomizeErrorCode.POST_NOT_FOUND);
             }
             commentExtMapper.decLikeCount(comment);
         }
+
     }
 
     public void addLike(Long commentId, Long userId) {
@@ -170,19 +176,20 @@ public class CommentService {
         like.setUserId(userId);
         likeMapper.insert(like);
     }
-    public boolean isLiked(Long commentId, Long userId){
+
+    public boolean isLiked(Long commentId, Long userId) {
         LikeExample likeExample = new LikeExample();
         LikeExample.Criteria criteria = likeExample.createCriteria();
         criteria.andCommentIdEqualTo(commentId);
         criteria.andUserIdEqualTo(userId);
-        List<?>list= likeMapper.selectByExample(likeExample);
-        if( list.size() == 0)
+        List<?> list = likeMapper.selectByExample(likeExample);
+        if (list.size() == 0)
             return false;
         else
             return true;
     }
 
-    public void deleteLike(Long commentId, Long userId){
+    public void deleteLike(Long commentId, Long userId) {
         LikeExample likeExample = new LikeExample();
         LikeExample.Criteria criteria = likeExample.createCriteria();
         criteria.andCommentIdEqualTo(commentId).andUserIdEqualTo(userId);

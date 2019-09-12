@@ -29,4 +29,30 @@
         from POSTS
         where id != ${id} and tag regexp #{tag}
     </select>
+    <select id="countBySearch" parameterType="com.example.assignment.dto.PostQueryDTO" resultType="java.lang.Integer">
+        select count (*)
+        from POSTS
+        <where>
+            <if test="search != null">
+                and title regexp #{search}
+            </if>
+        </where>
+    </select>
+    <select id="selectBySearch" parameterType="com.example.assignment.dto.PostQueryDTO" resultMap="BaseResultMap">
+        select *
+        from POSTS
+        <where>
+            <if test="search != null">
+                and title regexp #{search}
+            </if>
+        </where>
+        order by gmt_create desc limit #{page},#{size}
+    </select>
+
+    <select id="selectTopTen" parameterType="com.example.assignment.dto.PostQueryDTO" resultMap="BaseResultMap">
+        select *
+        from POSTS
+        order by VIEW_COUNT desc limit 5
+    </select>
+
 </mapper>
