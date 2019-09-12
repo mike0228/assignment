@@ -123,3 +123,12 @@ body {
     bottom: 65px;
     width: 100%;
 }
+
+.logo{
+    width: 150px;
+    height: 60px;
+}
+
+.nav navbar-nav navbar-right{
+    color: red;
+}

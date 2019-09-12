@@ -36,4 +36,5 @@ public class PostController {
         model.addAttribute("relatedPosts",relatesPosts);
         return "post";
     }
+
 }

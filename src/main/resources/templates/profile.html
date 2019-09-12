@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/BraveHeart.css"/>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 </head>
-<body>
+<body background="/images/Background.jpg">
 <div th:insert="~{navigation :: nav}"></div>
 <div class="container-fluid main profile">
     <div class="row">
@@ -110,7 +110,7 @@
         <div class="col-lg-3 col-md-3 col-sm-12 cl-xs-12">
             <div class="list-group section">
                 <a href="/profile/posts" th:class="${section == 'posts'} ? 'active list-group-item':'list-group-item'">
-                    我的问题
+                    我的帖子
                 </a>
                 <a href="/profile/replies"
                    th:class="${section == 'replies'} ? 'active list-group-item':'list-group-item'">
