@@ -110,3 +110,16 @@ body {
     margin: 5px 5px;
     display: inline-block;
 }
+
+.alert-warning{
+    background-image: linear-gradient(to bottom,#000000 0,#e6efb1 100%);
+    color: #fffdfd;
+}
+
+.scroll_body{
+    overflow-y: scroll;
+    position: absolute;
+    top: 55px;
+    bottom: 65px;
+    width: 100%;
+}

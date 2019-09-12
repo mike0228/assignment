@@ -1,6 +1,7 @@
 package com.example.assignment.service;
 
 import com.example.assignment.dto.CommentDTO;
+import com.example.assignment.dto.CommentListDTO;
 import com.example.assignment.enums.CommentTypeEnum;
 import com.example.assignment.enums.NotificationStatusEnum;
 import com.example.assignment.enums.NotificationTypeEnum;
@@ -8,6 +9,7 @@ import com.example.assignment.exception.CustomizeErrorCode;
 import com.example.assignment.exception.CustomizeException;
 import com.example.assignment.mapper.*;
 import com.example.assignment.model.*;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -194,6 +196,41 @@ public class CommentService {
         LikeExample.Criteria criteria = likeExample.createCriteria();
         criteria.andCommentIdEqualTo(commentId).andUserIdEqualTo(userId);
         likeMapper.deleteByExample(likeExample);
+    }
+    public CommentListDTO list(Long id,CommentTypeEnum type, Integer page, Integer size) {
+        CommentListDTO commentListDTO = new CommentListDTO();
+        Integer totalPage;
+        CommentExample commentExample = new CommentExample();
+        commentExample.createCriteria()
+                .andParentIdEqualTo(id)
+                .andTypeEqualTo(type.getType());
+        commentExample.setOrderByClause("gmt_create asc");
+        Integer totalCount = (int) commentMapper.countByExample(commentExample);
+        if (totalCount % size == 0) {
+            totalPage = totalCount / size;
+        } else {
+            totalPage = totalCount / size + 1;
+        }
+        if (page < 1)
+            page = 1;
+        if (page > totalPage)
+            page = totalPage;
+
+        commentListDTO.setCommentListDTO(totalPage, page);
+        Integer offset = size * (page - 1);
+        CommentExample example = new CommentExample();
+        example.createCriteria().andTypeEqualTo(type.getType()).andParentIdEqualTo(id);
+        List<Comment> comments = commentMapper.selectByExampleWithRowbounds(example,new RowBounds(offset, size));
+        List<CommentDTO> commentDTOList = new ArrayList<>();
+        for (Comment comment : comments) {
+            User user = userMapper.selectByPrimaryKey(comment.getCommentator());
+            CommentDTO commentDTO = new CommentDTO();
+            BeanUtils.copyProperties(comment, commentDTO);
+            commentDTO.setUser(user);
+            commentDTOList.add(commentDTO);
+        }
+        commentListDTO.setData(commentDTOList);
+        return commentListDTO;
     }
 }
 
