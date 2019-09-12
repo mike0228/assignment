@@ -40,6 +40,7 @@ function comment(e) {
     var commentId = e.getAttribute("data-id");
     var content = $("#input-" + commentId).val();
     comment2target(commentId, 2, content,e);
+
 }
 
 function collapseComments(e) {
@@ -65,7 +66,6 @@ function collapseComments(e) {
                         "class": "media-object img-rounded",
                         "src": comment.user.avatarUrl
                     }));
-
                     var mediaBodyElement = $("<div/>", {
                         "class": "media-body"
                     }).append($("<h5/>", {
