@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,17 +25,16 @@ public class FileController {
 
     @RequestMapping("/file/upload")
     @ResponseBody
-    public FileDTO upload(HttpServletRequest request) throws IOException {
-        MultipartHttpServletRequest multiServletRequest = (MultipartHttpServletRequest) request;
-        MultipartFile file = multiServletRequest.getFile("editormd-image-file");
-        try{
-        String fileName = aliyunSupport.upload(file.getInputStream(),file.getOriginalFilename());
-        FileDTO fileDTO = new FileDTO();
-        fileDTO.setUrl(fileName);
-        fileDTO.setSuccess(1);
-        return fileDTO;
-        }
-        catch(MaxUploadSizeExceededException e){
+    public FileDTO upload(HttpServletRequest request,
+                          @RequestParam(name = "editormd-image-file") MultipartFile file) throws IOException {
+
+        try {
+            String fileName = aliyunSupport.upload(file.getInputStream(), file.getOriginalFilename());
+            FileDTO fileDTO = new FileDTO();
+            fileDTO.setUrl(fileName);
+            fileDTO.setSuccess(1);
+            return fileDTO;
+        } catch (MaxUploadSizeExceededException e) {
             throw new CustomizeException(CustomizeErrorCode.FILE_UPLOAD_ERROR);
         }
     }
