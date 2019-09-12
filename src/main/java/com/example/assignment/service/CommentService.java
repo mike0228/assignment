@@ -64,7 +64,6 @@ public class CommentService {
             if (post == null){
                 throw new CustomizeException(CustomizeErrorCode.POST_NOT_FOUND);
             }
-            comment.setCommentCount(0);
             commentMapper.insert(comment);
             post.setCommentCount(1);
             postExtMapper.incCommentCount(post);
@@ -73,9 +72,6 @@ public class CommentService {
     }
 
     private void creatNotify(Comment comment, Long receiver, String notifierName, String outerTitle, NotificationTypeEnum notificationType, Long outerId) {
-        if (receiver == comment.getCommentator()){
-            return;
-        }
         Notification notification = new Notification();
         notification.setGmtCreate(System.currentTimeMillis());
         notification.setType(notificationType.getType());
@@ -166,7 +162,6 @@ public class CommentService {
             }
             commentExtMapper.decLikeCount(comment);
         }
-
     }
 
     public void addLike(Long commentId, Long userId) {

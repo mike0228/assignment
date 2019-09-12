@@ -2,9 +2,9 @@ package com.example.assignment.service;
 
 import com.example.assignment.dto.PaginationDTO;
 import com.example.assignment.dto.PostDTO;
-import com.example.assignment.dto.PostQueryDTO;
 import com.example.assignment.exception.CustomizeErrorCode;
 import com.example.assignment.exception.CustomizeException;
+import com.example.assignment.mapper.CommentMapper;
 import com.example.assignment.mapper.PostExtMapper;
 import com.example.assignment.mapper.PostMapper;
 import com.example.assignment.mapper.UserMapper;
@@ -24,12 +24,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class PostService {
+
     @Autowired
     private PostMapper postMapper;
     @Autowired
     private UserMapper userMapper;
     @Autowired
     private PostExtMapper postExtMapper;
+    @Autowired
+    private CommentMapper commentMapper;
 
     public PaginationDTO list(String search,Integer page, Integer size) {
         if(StringUtils.isNotBlank(search)){
@@ -180,5 +183,11 @@ public class PostService {
             return postDTO;
         }).collect(Collectors.toList());
         return hotTopicDTOs;
+    }
+    public void deleteById(Long id, Boolean isAdministrator) {
+        if (isAdministrator != true) {
+            throw new CustomizeException(CustomizeErrorCode.UNABLE_TO_DELETE);
+        }
+        postMapper.deleteByPrimaryKey(id);
     }
 }
