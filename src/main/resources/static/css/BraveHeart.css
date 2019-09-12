@@ -129,6 +129,6 @@ body {
     height: 60px;
 }
 
-.nav navbar-nav navbar-right{
-    color: red;
+.badge{
+    background-color: #ca00ff;
 }
