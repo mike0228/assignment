@@ -16,7 +16,10 @@
     <script src="/js/lib/prettify.min.js"></script>
 
 </head>
-<body>
+<body background="/images/Background.jpg"background-repeat: no-repeat;
+                                            background-attachment: fixed;
+                                            background-size: cover;
+                                            background-color: #CCCCCC>
 <div th:insert="~{navigation :: nav}"></div>
 <div class="container-fluid main profile">
     <div class="row">
@@ -62,7 +65,7 @@
                     <span th:text="${post.commentCount}"></span>个回复
                 </h4>
                 <hr class="col-lg-12 col-md-12 col-sm-12 cl-xs-12 comment-sp">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comments" th:each="comment :${comments}">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comments" th:each="comment :${comments.data}">
                     <div class="media">
                         <div class="media-left">
                             <a href="#">
@@ -104,6 +107,36 @@
                     </div>
                 </div>
             </div>
+
+            <nav aria-label="Page navigation"  th:if="${comments.page >= 1 }">
+                <ul class="pagination">
+                    <li th:if="${comments.showFirstPage}">
+                        <a th:href="@{/post/{id}/(page=1,id=${post.id})}" aria-label="FirstPage">
+                            <span aria-hidden="true">&lt;&lt;</span>
+                        </a>
+                    </li>
+                    <li th:if="${comments.showPrevious}">
+                        <a th:href="@{/post/{id}/(page=${comments.page - 1},id=${post.id})}" aria-label="Previous">
+                            <span aria-hidden="true">&lt;</span>
+                        </a>
+                    </li>
+                    <li th:each="page : ${comments.pages}"th:class="${comments.page == page}   ? 'active'">
+                        <a th:href="@{/post/{id}/(page=${page},id=${post.id})}" th:text="${page}"></a></li>
+                    <li th:if="${comments.showNext}">
+                        <a th:href="@{/post/{id}/(page=${comments.page + 1},id=${post.id})}" aria-label="Next">
+                            <span aria-hidden="true">&gt;</span>
+                        </a>
+                    </li>
+                    <li th:if="${comments.showEndPage}">
+                        <a th:href="@{/post/{id}/(page=${comments.totalPage},id=${post.id})}" aria-label="EndPage">
+                            <span aria-hidden="true">&gt;&gt;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+
+
             <!--post-->
             <div class="col-lg-12 col-md-12 col-sm-12 cl-xs-12">
                 <h4>

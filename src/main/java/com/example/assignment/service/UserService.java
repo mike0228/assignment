@@ -19,7 +19,9 @@ public class UserService {
     @Autowired
     private AdminMapper adminMapper;
 
+
     public void createOrUpdate(User user) {
+
         UserExample userExample = new UserExample();
         AdminExample adminExample = new AdminExample();
         userExample.createCriteria().andAccountIdEqualTo(user.getAccountId());

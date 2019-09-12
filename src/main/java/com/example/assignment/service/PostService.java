@@ -5,6 +5,7 @@ import com.example.assignment.dto.PostDTO;
 import com.example.assignment.dto.PostQueryDTO;
 import com.example.assignment.exception.CustomizeErrorCode;
 import com.example.assignment.exception.CustomizeException;
+import com.example.assignment.mapper.CommentMapper;
 import com.example.assignment.mapper.PostExtMapper;
 import com.example.assignment.mapper.PostMapper;
 import com.example.assignment.mapper.UserMapper;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class PostService {
+
     @Autowired
     private PostMapper postMapper;
     @Autowired
