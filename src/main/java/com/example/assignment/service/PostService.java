@@ -34,19 +34,10 @@ public class PostService {
     @Autowired
     private CommentMapper commentMapper;
 
-    public PaginationDTO list(String search,Integer page, Integer size) {
-        if(StringUtils.isNotBlank(search)){
-            String[] tags = StringUtils.split(search, " ");
-            search  = Arrays.stream(tags).collect(Collectors.joining("|"));
-        }
-
+    public PaginationDTO list(Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalPage;
-
-        PostQueryDTO postQueryDTO = new PostQueryDTO();
-        postQueryDTO.setSearch(search);
-        Integer totalCount = postExtMapper.countBySearch(postQueryDTO);
-
+        Integer totalCount = (int)postMapper.countByExample(new PostExample());
         if (totalCount % size == 0) {
             totalPage = totalCount / size;
         } else {
@@ -63,9 +54,7 @@ public class PostService {
         Integer offset = size * (page - 1);
         PostExample postExample = new PostExample();
         postExample.setOrderByClause("gmt_create desc");
-        postQueryDTO.setSize(size);
-        postQueryDTO.setPage(offset);
-        List<Post> posts = postExtMapper.selectBySearch(postQueryDTO);
+        List<Post> posts = postMapper.selectByExampleWithRowbounds(postExample,new RowBounds(offset, size));
         List<PostDTO> postDTOList = new ArrayList<>();
 
         for (Post post : posts) {
@@ -173,17 +162,6 @@ public class PostService {
         return postDTOS;
     }
 
-    public List<PostDTO> listHotTopics() {
-        List<Post> hotTopics = postExtMapper.selectTopTen();
-        List<PostDTO> hotTopicDTOs = hotTopics.stream().map(q->{
-            PostDTO postDTO= new PostDTO();
-            User user = userMapper.selectByPrimaryKey(q.getCreator());
-            postDTO.setUser(user);
-            BeanUtils.copyProperties(q,postDTO);
-            return postDTO;
-        }).collect(Collectors.toList());
-        return hotTopicDTOs;
-    }
     public void deleteById(Long id, Boolean isAdministrator) {
         if (isAdministrator != true) {
             throw new CustomizeException(CustomizeErrorCode.UNABLE_TO_DELETE);

@@ -52,11 +52,11 @@ public class AuthorizeController {
             user.setBio(githubUser.getBio());
             userService.createOrUpdate(user);
             response.addCookie(new Cookie("token",token));
-            return "redirect:/";
+            return "redirect:index";
         }
         else
         {
-            return "redirect:/";
+            return "redirect:index";
         }
         }
         @GetMapping("/logout")
@@ -65,6 +65,6 @@ public class AuthorizeController {
             Cookie cookie = new Cookie("token",null);
             cookie.setMaxAge(0);
             response.addCookie(cookie);
-            return "redirect:/";
+            return "redirect:index";
     }
 }
