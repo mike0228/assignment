@@ -30,6 +30,7 @@ public class PostController {
                        @RequestParam(name = "size",defaultValue = "5")Integer size){
         PostDTO postDTO = postService.getById(id);
         List<PostDTO> relatesPosts = postService.selectRelated(postDTO);
+        postService.incView(id);
         CommentListDTO comments= commentService.list(id, CommentTypeEnum.POST,page,size);
         model.addAttribute("post", postDTO);
         model.addAttribute("comments", comments);
