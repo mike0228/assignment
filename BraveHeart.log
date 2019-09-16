@@ -1,0 +1,15 @@
+2019-09-16 22:32:59.551  INFO 6920 --- [restartedMain] c.e.assignment.AssignmentApplication     : Starting AssignmentApplication on DESKTOP-CU02C0H with PID 6920 (C:\Users\59515\Documents\assignment\assignment\target\classes started by 59515 in C:\Users\59515\Documents\assignment\assignment)
+2019-09-16 22:32:59.552  INFO 6920 --- [restartedMain] c.e.assignment.AssignmentApplication     : No active profile set, falling back to default profiles: default
+2019-09-16 22:33:00.205  INFO 6920 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$180cbfb2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-16 22:33:00.208  INFO 6920 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-16 22:33:00.372  INFO 6920 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-16 22:33:00.374  INFO 6920 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-16 22:33:00.374  INFO 6920 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-16 22:33:00.410  INFO 6920 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-16 22:33:00.411  INFO 6920 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 854 ms
+2019-09-16 22:33:00.781  INFO 6920 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-16 22:33:00.813  INFO 6920 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-09-16 22:33:01.108  INFO 6920 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-16 22:33:01.134  INFO 6920 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-16 22:33:01.135  INFO 6920 --- [restartedMain] c.e.assignment.AssignmentApplication     : Started AssignmentApplication in 1.689 seconds (JVM running for 26052.564)
+2019-09-16 22:33:01.138  INFO 6920 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
