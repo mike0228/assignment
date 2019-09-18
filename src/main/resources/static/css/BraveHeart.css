@@ -103,6 +103,7 @@ body {
     display: none;
     margin-top: 10px;
     padding-top: 10px;
+    cursor: pointer;
 }
 
 .publish-tag-tab .label-info{
