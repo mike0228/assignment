@@ -113,8 +113,8 @@ body {
 }
 
 .alert-warning{
-    background-image: linear-gradient(to bottom,#000000 0,#e6efb1 100%);
-    color: #fffdfd;
+    color: #4f4f4f;
+    margin-top: 15px;
 }
 
 .scroll_body{
