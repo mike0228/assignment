@@ -34,7 +34,7 @@ public class ProfileController {
         }
         if ("posts".equals(action)){
             model.addAttribute("section","posts");
-            model.addAttribute("sectionName","我的提问");
+            model.addAttribute("sectionName","我的帖子");
             PaginationDTO paginationDTO = postService.list(user.getId(),page,size);
             model.addAttribute("pagination",paginationDTO);
         }
