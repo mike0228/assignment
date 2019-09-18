@@ -1,15 +1,225 @@
-2019-09-16 22:32:59.551  INFO 6920 --- [restartedMain] c.e.assignment.AssignmentApplication     : Starting AssignmentApplication on DESKTOP-CU02C0H with PID 6920 (C:\Users\59515\Documents\assignment\assignment\target\classes started by 59515 in C:\Users\59515\Documents\assignment\assignment)
-2019-09-16 22:32:59.552  INFO 6920 --- [restartedMain] c.e.assignment.AssignmentApplication     : No active profile set, falling back to default profiles: default
-2019-09-16 22:33:00.205  INFO 6920 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$180cbfb2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-09-16 22:33:00.208  INFO 6920 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
-2019-09-16 22:33:00.372  INFO 6920 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2019-09-16 22:33:00.374  INFO 6920 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-09-16 22:33:00.374  INFO 6920 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
-2019-09-16 22:33:00.410  INFO 6920 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-09-16 22:33:00.411  INFO 6920 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 854 ms
-2019-09-16 22:33:00.781  INFO 6920 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-09-16 22:33:00.813  INFO 6920 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2019-09-16 22:33:01.108  INFO 6920 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2019-09-16 22:33:01.134  INFO 6920 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2019-09-16 22:33:01.135  INFO 6920 --- [restartedMain] c.e.assignment.AssignmentApplication     : Started AssignmentApplication in 1.689 seconds (JVM running for 26052.564)
-2019-09-16 22:33:01.138  INFO 6920 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-09-18 08:49:16.210  INFO 8012 --- [restartedMain] c.e.assignment.AssignmentApplication     : Starting AssignmentApplication on DESKTOP-CU02C0H with PID 8012 (C:\Users\59515\Documents\assignment\assignment\target\classes started by 59515 in C:\Users\59515\Documents\assignment\assignment)
+2019-09-18 08:49:16.218  INFO 8012 --- [restartedMain] c.e.assignment.AssignmentApplication     : No active profile set, falling back to default profiles: default
+2019-09-18 08:49:16.345  INFO 8012 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-18 08:49:16.345  INFO 8012 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-18 08:49:16.601  WARN 8012 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-18 08:49:19.102  INFO 8012 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$b4f797d0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-18 08:49:19.179  INFO 8012 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-18 08:49:19.781  INFO 8012 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-18 08:49:19.813  INFO 8012 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-18 08:49:19.815  INFO 8012 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-18 08:49:19.989  INFO 8012 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-18 08:49:19.989  INFO 8012 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3644 ms
+2019-09-18 08:49:22.520  INFO 8012 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-18 08:49:22.823  INFO 8012 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-09-18 08:49:24.637  INFO 8012 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-18 08:49:24.861  INFO 8012 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-18 08:49:24.890  INFO 8012 --- [restartedMain] c.e.assignment.AssignmentApplication     : Started AssignmentApplication in 9.489 seconds (JVM running for 11.706)
+2019-09-18 08:49:26.802  INFO 8012 --- [http-nio-8080-exec-8] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-18 08:49:26.815  INFO 8012 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-18 08:49:26.882  INFO 8012 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed initialization in 40 ms
+2019-09-18 08:49:27.117  INFO 8012 --- [http-nio-8080-exec-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-09-18 08:49:27.838  INFO 8012 --- [http-nio-8080-exec-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-09-18 08:49:27.864 DEBUG 8012 --- [http-nio-8080-exec-8] c.e.a.m.PostExtMapper.countBySearch      : ==>  Preparing: select count (*) from POSTS 
+2019-09-18 08:49:27.965 DEBUG 8012 --- [http-nio-8080-exec-8] c.e.a.m.PostExtMapper.countBySearch      : ==> Parameters: 
+2019-09-18 08:49:28.013 DEBUG 8012 --- [http-nio-8080-exec-8] c.e.a.m.PostExtMapper.countBySearch      : <==      Total: 1
+2019-09-18 08:49:28.037 DEBUG 8012 --- [http-nio-8080-exec-8] c.e.a.m.PostExtMapper.selectBySearch     : ==>  Preparing: select * from POSTS order by gmt_create desc limit ?,? 
+2019-09-18 08:49:28.043 DEBUG 8012 --- [http-nio-8080-exec-8] c.e.a.m.PostExtMapper.selectBySearch     : ==> Parameters: -8(Integer), 8(Integer)
+2019-09-18 08:49:28.058 DEBUG 8012 --- [http-nio-8080-exec-8] c.e.a.m.PostExtMapper.selectBySearch     : <==      Total: 0
+2019-09-18 08:49:28.060 DEBUG 8012 --- [http-nio-8080-exec-8] c.e.a.mapper.PostExtMapper.selectTopTen  : ==>  Preparing: select * from POSTS order by VIEW_COUNT desc limit 5 
+2019-09-18 08:49:28.078 DEBUG 8012 --- [http-nio-8080-exec-8] c.e.a.mapper.PostExtMapper.selectTopTen  : ==> Parameters: 
+2019-09-18 08:49:28.085 DEBUG 8012 --- [http-nio-8080-exec-8] c.e.a.mapper.PostExtMapper.selectTopTen  : <==      Total: 0
+2019-09-18 08:51:37.573 DEBUG 8012 --- [http-nio-8080-exec-2] c.e.a.m.PostExtMapper.countBySearch      : ==>  Preparing: select count (*) from POSTS 
+2019-09-18 08:51:37.574 DEBUG 8012 --- [http-nio-8080-exec-2] c.e.a.m.PostExtMapper.countBySearch      : ==> Parameters: 
+2019-09-18 08:51:37.577 DEBUG 8012 --- [http-nio-8080-exec-2] c.e.a.m.PostExtMapper.countBySearch      : <==      Total: 1
+2019-09-18 08:51:37.578 DEBUG 8012 --- [http-nio-8080-exec-2] c.e.a.m.PostExtMapper.selectBySearch     : ==>  Preparing: select * from POSTS order by gmt_create desc limit ?,? 
+2019-09-18 08:51:37.578 DEBUG 8012 --- [http-nio-8080-exec-2] c.e.a.m.PostExtMapper.selectBySearch     : ==> Parameters: -8(Integer), 8(Integer)
+2019-09-18 08:51:37.583 DEBUG 8012 --- [http-nio-8080-exec-2] c.e.a.m.PostExtMapper.selectBySearch     : <==      Total: 0
+2019-09-18 08:51:37.585 DEBUG 8012 --- [http-nio-8080-exec-2] c.e.a.mapper.PostExtMapper.selectTopTen  : ==>  Preparing: select * from POSTS order by VIEW_COUNT desc limit 5 
+2019-09-18 08:51:37.585 DEBUG 8012 --- [http-nio-8080-exec-2] c.e.a.mapper.PostExtMapper.selectTopTen  : ==> Parameters: 
+2019-09-18 08:51:37.586 DEBUG 8012 --- [http-nio-8080-exec-2] c.e.a.mapper.PostExtMapper.selectTopTen  : <==      Total: 0
+2019-09-18 08:52:36.586  WARN 8012 --- [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'code' is not present]
+2019-09-18 08:52:40.398  WARN 8012 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'code' is not present]
+2019-09-18 08:53:10.469  WARN 8012 --- [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'code' is not present]
+2019-09-18 08:57:16.269  INFO 13612 --- [restartedMain] c.e.assignment.AssignmentApplication     : Starting AssignmentApplication on DESKTOP-CU02C0H with PID 13612 (C:\Users\59515\Documents\assignment\assignment\target\classes started by 59515 in C:\Users\59515\Documents\assignment\assignment)
+2019-09-18 08:57:16.273  INFO 13612 --- [restartedMain] c.e.assignment.AssignmentApplication     : No active profile set, falling back to default profiles: default
+2019-09-18 08:57:16.396  INFO 13612 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-18 08:57:16.396  INFO 13612 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-18 08:57:16.679  WARN 13612 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-18 08:57:18.506  INFO 13612 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$36ecef7f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-18 08:57:18.589  INFO 13612 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-18 08:57:19.173  INFO 13612 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-18 08:57:19.201  INFO 13612 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-18 08:57:19.203  INFO 13612 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-18 08:57:19.357  INFO 13612 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-18 08:57:19.361  INFO 13612 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2961 ms
+2019-09-18 08:57:21.713  INFO 13612 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-18 08:57:21.861  INFO 13612 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-09-18 08:57:23.134  INFO 13612 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-18 08:57:23.278  INFO 13612 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-18 08:57:23.287  INFO 13612 --- [restartedMain] c.e.assignment.AssignmentApplication     : Started AssignmentApplication in 7.853 seconds (JVM running for 9.797)
+2019-09-18 08:57:36.304  INFO 13612 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-18 08:57:36.306  INFO 13612 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-18 08:57:36.325  INFO 13612 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 19 ms
+2019-09-18 08:57:36.479  INFO 13612 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-09-18 08:57:36.949  INFO 13612 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-09-18 08:57:36.966 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.countBySearch      : ==>  Preparing: select count (*) from POSTS 
+2019-09-18 08:57:37.003 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.countBySearch      : ==> Parameters: 
+2019-09-18 08:57:37.039 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.countBySearch      : <==      Total: 1
+2019-09-18 08:57:37.048 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.selectBySearch     : ==>  Preparing: select * from POSTS order by gmt_create desc limit ?,? 
+2019-09-18 08:57:37.062 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.selectBySearch     : ==> Parameters: -8(Integer), 8(Integer)
+2019-09-18 08:57:37.069 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.selectBySearch     : <==      Total: 0
+2019-09-18 08:57:37.073 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.mapper.PostExtMapper.selectTopTen  : ==>  Preparing: select * from POSTS order by VIEW_COUNT desc limit 5 
+2019-09-18 08:57:37.073 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.mapper.PostExtMapper.selectTopTen  : ==> Parameters: 
+2019-09-18 08:57:37.073 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.mapper.PostExtMapper.selectTopTen  : <==      Total: 0
+2019-09-18 08:57:51.563 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.mapper.UserMapper.selectByExample  : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL, IS_ADMINISTRATOR from USER WHERE ( ACCOUNT_ID = ? ) 
+2019-09-18 08:57:51.575 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.mapper.UserMapper.selectByExample  : ==> Parameters: 54830149(String)
+2019-09-18 08:57:51.577 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.mapper.UserMapper.selectByExample  : <==      Total: 0
+2019-09-18 08:57:51.583 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.m.AdminMapper.selectByExample      : ==>  Preparing: select ACCOUNT_ID from ADMIN WHERE ( ACCOUNT_ID = ? ) 
+2019-09-18 08:57:51.585 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.m.AdminMapper.selectByExample      : ==> Parameters: 54830149(String)
+2019-09-18 08:57:51.589 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.a.m.AdminMapper.selectByExample      : <==      Total: 0
+2019-09-18 08:57:51.592 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.assignment.mapper.UserMapper.insert  : ==>  Preparing: insert into USER (ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL, IS_ADMINISTRATOR ) values (?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2019-09-18 08:57:51.596 DEBUG 13612 --- [http-nio-8080-exec-1] c.e.assignment.mapper.UserMapper.insert  : ==> Parameters: null, 54830149(String), Tao(String), e1245c7d-7df7-4ddf-a431-cff7eae81ed3(String), 1568768271591(Long), 1568768271591(Long), null, https://avatars0.githubusercontent.com/u/54830149?v=4(String), null
+2019-09-18 08:57:51.814  WARN 13612 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: NULL not allowed for column "IS_ADMINISTRATOR"; SQL statement:
+insert into USER (ID, ACCOUNT_ID, NAME, 
+      TOKEN, GMT_CREATE, GMT_MODIFIED, 
+      BIO, AVATAR_URL, IS_ADMINISTRATOR
+      )
+    values (?, ?, ?, 
+      ?, ?, ?, 
+      ?, ?, ?
+      ) [23502-199]
+### The error may exist in file [C:\Users\59515\Documents\assignment\assignment\target\classes\mapper\UserMapper.xml]
+### The error may involve com.example.assignment.mapper.UserMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into USER (ID, ACCOUNT_ID, NAME,        TOKEN, GMT_CREATE, GMT_MODIFIED,        BIO, AVATAR_URL, IS_ADMINISTRATOR       )     values (?, ?, ?,        ?, ?, ?,        ?, ?, ?       )
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: NULL not allowed for column "IS_ADMINISTRATOR"; SQL statement:
+insert into USER (ID, ACCOUNT_ID, NAME, 
+      TOKEN, GMT_CREATE, GMT_MODIFIED, 
+      BIO, AVATAR_URL, IS_ADMINISTRATOR
+      )
+    values (?, ?, ?, 
+      ?, ?, ?, 
+      ?, ?, ?
+      ) [23502-199]
+; NULL not allowed for column "IS_ADMINISTRATOR"; SQL statement:
+insert into USER (ID, ACCOUNT_ID, NAME, 
+      TOKEN, GMT_CREATE, GMT_MODIFIED, 
+      BIO, AVATAR_URL, IS_ADMINISTRATOR
+      )
+    values (?, ?, ?, 
+      ?, ?, ?, 
+      ?, ?, ?
+      ) [23502-199]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: NULL not allowed for column "IS_ADMINISTRATOR"; SQL statement:
+insert into USER (ID, ACCOUNT_ID, NAME, 
+      TOKEN, GMT_CREATE, GMT_MODIFIED, 
+      BIO, AVATAR_URL, IS_ADMINISTRATOR
+      )
+    values (?, ?, ?, 
+      ?, ?, ?, 
+      ?, ?, ?
+      ) [23502-199]]
+2019-09-18 09:12:18.859  INFO 4844 --- [restartedMain] c.e.assignment.AssignmentApplication     : Starting AssignmentApplication on DESKTOP-CU02C0H with PID 4844 (C:\Users\59515\Documents\assignment\assignment\target\classes started by 59515 in C:\Users\59515\Documents\assignment\assignment)
+2019-09-18 09:12:18.872  INFO 4844 --- [restartedMain] c.e.assignment.AssignmentApplication     : No active profile set, falling back to default profiles: default
+2019-09-18 09:12:18.955  INFO 4844 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-18 09:12:18.957  INFO 4844 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-18 09:12:19.141  WARN 4844 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-18 09:12:20.874  INFO 4844 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$a422bb0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-18 09:12:20.915  INFO 4844 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-18 09:12:21.366  INFO 4844 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-18 09:12:21.390  INFO 4844 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-18 09:12:21.391  INFO 4844 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-18 09:12:21.516  INFO 4844 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-18 09:12:21.516  INFO 4844 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2559 ms
+2019-09-18 09:12:22.563  INFO 4844 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-18 09:12:22.664  INFO 4844 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-09-18 09:12:23.431  INFO 4844 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-18 09:12:23.502  INFO 4844 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-18 09:12:23.517  INFO 4844 --- [restartedMain] c.e.assignment.AssignmentApplication     : Started AssignmentApplication in 5.325 seconds (JVM running for 6.717)
+2019-09-18 09:12:26.608  INFO 4844 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-18 09:12:26.611  INFO 4844 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-18 09:12:26.646  INFO 4844 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 32 ms
+2019-09-18 09:12:26.874  INFO 4844 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-09-18 09:12:27.171  INFO 4844 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-09-18 09:12:27.183 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.countBySearch      : ==>  Preparing: select count (*) from POSTS 
+2019-09-18 09:12:27.211 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.countBySearch      : ==> Parameters: 
+2019-09-18 09:12:27.235 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.countBySearch      : <==      Total: 1
+2019-09-18 09:12:27.240 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.selectBySearch     : ==>  Preparing: select * from POSTS order by gmt_create desc limit ?,? 
+2019-09-18 09:12:27.245 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.selectBySearch     : ==> Parameters: -8(Integer), 8(Integer)
+2019-09-18 09:12:27.247 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.selectBySearch     : <==      Total: 0
+2019-09-18 09:12:27.249 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.mapper.PostExtMapper.selectTopTen  : ==>  Preparing: select * from POSTS order by VIEW_COUNT desc limit 5 
+2019-09-18 09:12:27.249 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.mapper.PostExtMapper.selectTopTen  : ==> Parameters: 
+2019-09-18 09:12:27.250 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.mapper.PostExtMapper.selectTopTen  : <==      Total: 0
+2019-09-18 09:12:49.463 DEBUG 4844 --- [http-nio-8080-exec-10] c.e.a.mapper.UserMapper.selectByExample  : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL, IS_ADMINISTRATOR from USER WHERE ( ACCOUNT_ID = ? ) 
+2019-09-18 09:12:49.472 DEBUG 4844 --- [http-nio-8080-exec-10] c.e.a.mapper.UserMapper.selectByExample  : ==> Parameters: 54830149(String)
+2019-09-18 09:12:49.472 DEBUG 4844 --- [http-nio-8080-exec-10] c.e.a.mapper.UserMapper.selectByExample  : <==      Total: 0
+2019-09-18 09:12:49.479 DEBUG 4844 --- [http-nio-8080-exec-10] c.e.a.m.AdminMapper.selectByExample      : ==>  Preparing: select ACCOUNT_ID from ADMIN WHERE ( ACCOUNT_ID = ? ) 
+2019-09-18 09:12:49.483 DEBUG 4844 --- [http-nio-8080-exec-10] c.e.a.m.AdminMapper.selectByExample      : ==> Parameters: 54830149(String)
+2019-09-18 09:12:49.483 DEBUG 4844 --- [http-nio-8080-exec-10] c.e.a.m.AdminMapper.selectByExample      : <==      Total: 0
+2019-09-18 09:12:49.483 DEBUG 4844 --- [http-nio-8080-exec-10] c.e.assignment.mapper.UserMapper.insert  : ==>  Preparing: insert into USER (ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL, IS_ADMINISTRATOR ) values (?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2019-09-18 09:12:49.492 DEBUG 4844 --- [http-nio-8080-exec-10] c.e.assignment.mapper.UserMapper.insert  : ==> Parameters: null, 54830149(String), Tao(String), 03daf36b-233c-401d-98d4-4df2499f54b7(String), 1568769169483(Long), 1568769169483(Long), null, https://avatars0.githubusercontent.com/u/54830149?v=4(String), false(Boolean)
+2019-09-18 09:12:49.524 DEBUG 4844 --- [http-nio-8080-exec-10] c.e.assignment.mapper.UserMapper.insert  : <==    Updates: 1
+2019-09-18 09:12:49.563 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.mapper.UserMapper.selectByExample  : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL, IS_ADMINISTRATOR from USER WHERE ( TOKEN = ? ) 
+2019-09-18 09:12:49.563 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.mapper.UserMapper.selectByExample  : ==> Parameters: 03daf36b-233c-401d-98d4-4df2499f54b7(String)
+2019-09-18 09:12:49.567 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-18 09:12:49.599 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.N.countByExample                 : ==>  Preparing: select count(*) from NOTIFICATION WHERE ( RECEIVER = ? and STATUS = ? ) 
+2019-09-18 09:12:49.607 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.N.countByExample                 : ==> Parameters: 33(Long), 0(Integer)
+2019-09-18 09:12:49.623 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.N.countByExample                 : <==      Total: 1
+2019-09-18 09:12:49.625 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.countBySearch      : ==>  Preparing: select count (*) from POSTS 
+2019-09-18 09:12:49.625 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.countBySearch      : ==> Parameters: 
+2019-09-18 09:12:49.627 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.countBySearch      : <==      Total: 1
+2019-09-18 09:12:49.627 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.selectBySearch     : ==>  Preparing: select * from POSTS order by gmt_create desc limit ?,? 
+2019-09-18 09:12:49.627 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.selectBySearch     : ==> Parameters: -8(Integer), 8(Integer)
+2019-09-18 09:12:49.636 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.m.PostExtMapper.selectBySearch     : <==      Total: 0
+2019-09-18 09:12:49.637 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.mapper.PostExtMapper.selectTopTen  : ==>  Preparing: select * from POSTS order by VIEW_COUNT desc limit 5 
+2019-09-18 09:12:49.640 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.mapper.PostExtMapper.selectTopTen  : ==> Parameters: 
+2019-09-18 09:12:49.644 DEBUG 4844 --- [http-nio-8080-exec-1] c.e.a.mapper.PostExtMapper.selectTopTen  : <==      Total: 0
+2019-09-18 09:12:49.747 DEBUG 4844 --- [http-nio-8080-exec-3] c.e.a.mapper.UserMapper.selectByExample  : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL, IS_ADMINISTRATOR from USER WHERE ( TOKEN = ? ) 
+2019-09-18 09:12:49.748 DEBUG 4844 --- [http-nio-8080-exec-3] c.e.a.mapper.UserMapper.selectByExample  : ==> Parameters: 03daf36b-233c-401d-98d4-4df2499f54b7(String)
+2019-09-18 09:12:49.750 DEBUG 4844 --- [http-nio-8080-exec-3] c.e.a.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-18 09:12:49.750 DEBUG 4844 --- [http-nio-8080-exec-2] c.e.a.mapper.UserMapper.selectByExample  : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL, IS_ADMINISTRATOR from USER WHERE ( TOKEN = ? ) 
+2019-09-18 09:12:49.752 DEBUG 4844 --- [http-nio-8080-exec-2] c.e.a.mapper.UserMapper.selectByExample  : ==> Parameters: 03daf36b-233c-401d-98d4-4df2499f54b7(String)
+2019-09-18 09:12:49.752 DEBUG 4844 --- [http-nio-8080-exec-4] c.e.a.mapper.UserMapper.selectByExample  : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL, IS_ADMINISTRATOR from USER WHERE ( TOKEN = ? ) 
+2019-09-18 09:12:49.753 DEBUG 4844 --- [http-nio-8080-exec-4] c.e.a.mapper.UserMapper.selectByExample  : ==> Parameters: 03daf36b-233c-401d-98d4-4df2499f54b7(String)
+2019-09-18 09:12:49.754 DEBUG 4844 --- [http-nio-8080-exec-4] c.e.a.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-18 09:12:49.754 DEBUG 4844 --- [http-nio-8080-exec-6] c.e.a.mapper.UserMapper.selectByExample  : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL, IS_ADMINISTRATOR from USER WHERE ( TOKEN = ? ) 
+2019-09-18 09:12:49.758 DEBUG 4844 --- [http-nio-8080-exec-3] c.e.a.m.N.countByExample                 : ==>  Preparing: select count(*) from NOTIFICATION WHERE ( RECEIVER = ? and STATUS = ? ) 
+2019-09-18 09:12:49.765 DEBUG 4844 --- [http-nio-8080-exec-6] c.e.a.mapper.UserMapper.selectByExample  : ==> Parameters: 03daf36b-233c-401d-98d4-4df2499f54b7(String)
+2019-09-18 09:12:49.765 DEBUG 4844 --- [http-nio-8080-exec-3] c.e.a.m.N.countByExample                 : ==> Parameters: 33(Long), 0(Integer)
+2019-09-18 09:12:49.767 DEBUG 4844 --- [http-nio-8080-exec-6] c.e.a.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-18 09:12:49.769 DEBUG 4844 --- [http-nio-8080-exec-3] c.e.a.m.N.countByExample                 : <==      Total: 1
+2019-09-18 09:12:49.757 DEBUG 4844 --- [http-nio-8080-exec-4] c.e.a.m.N.countByExample                 : ==>  Preparing: select count(*) from NOTIFICATION WHERE ( RECEIVER = ? and STATUS = ? ) 
+2019-09-18 09:12:49.770 DEBUG 4844 --- [http-nio-8080-exec-4] c.e.a.m.N.countByExample                 : ==> Parameters: 33(Long), 0(Integer)
+2019-09-18 09:12:49.772 DEBUG 4844 --- [http-nio-8080-exec-4] c.e.a.m.N.countByExample                 : <==      Total: 1
+2019-09-18 09:12:49.769 DEBUG 4844 --- [http-nio-8080-exec-6] c.e.a.m.N.countByExample                 : ==>  Preparing: select count(*) from NOTIFICATION WHERE ( RECEIVER = ? and STATUS = ? ) 
+2019-09-18 09:12:49.757 DEBUG 4844 --- [http-nio-8080-exec-2] c.e.a.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-18 09:12:49.778 DEBUG 4844 --- [http-nio-8080-exec-6] c.e.a.m.N.countByExample                 : ==> Parameters: 33(Long), 0(Integer)
+2019-09-18 09:12:49.779 DEBUG 4844 --- [http-nio-8080-exec-2] c.e.a.m.N.countByExample                 : ==>  Preparing: select count(*) from NOTIFICATION WHERE ( RECEIVER = ? and STATUS = ? ) 
+2019-09-18 09:12:49.756 DEBUG 4844 --- [http-nio-8080-exec-5] c.e.a.mapper.UserMapper.selectByExample  : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL, IS_ADMINISTRATOR from USER WHERE ( TOKEN = ? ) 
+2019-09-18 09:12:49.779 DEBUG 4844 --- [http-nio-8080-exec-2] c.e.a.m.N.countByExample                 : ==> Parameters: 33(Long), 0(Integer)
+2019-09-18 09:12:49.779 DEBUG 4844 --- [http-nio-8080-exec-5] c.e.a.mapper.UserMapper.selectByExample  : ==> Parameters: 03daf36b-233c-401d-98d4-4df2499f54b7(String)
+2019-09-18 09:12:49.779 DEBUG 4844 --- [http-nio-8080-exec-2] c.e.a.m.N.countByExample                 : <==      Total: 1
+2019-09-18 09:12:49.780 DEBUG 4844 --- [http-nio-8080-exec-5] c.e.a.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-18 09:12:49.780 DEBUG 4844 --- [http-nio-8080-exec-5] c.e.a.m.N.countByExample                 : ==>  Preparing: select count(*) from NOTIFICATION WHERE ( RECEIVER = ? and STATUS = ? ) 
+2019-09-18 09:12:49.780 DEBUG 4844 --- [http-nio-8080-exec-5] c.e.a.m.N.countByExample                 : ==> Parameters: 33(Long), 0(Integer)
+2019-09-18 09:12:49.784 DEBUG 4844 --- [http-nio-8080-exec-5] c.e.a.m.N.countByExample                 : <==      Total: 1
+2019-09-18 09:12:49.779 DEBUG 4844 --- [http-nio-8080-exec-6] c.e.a.m.N.countByExample                 : <==      Total: 1
+2019-09-18 09:12:49.803 DEBUG 4844 --- [http-nio-8080-exec-7] c.e.a.mapper.UserMapper.selectByExample  : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL, IS_ADMINISTRATOR from USER WHERE ( TOKEN = ? ) 
+2019-09-18 09:12:49.807 DEBUG 4844 --- [http-nio-8080-exec-7] c.e.a.mapper.UserMapper.selectByExample  : ==> Parameters: 03daf36b-233c-401d-98d4-4df2499f54b7(String)
+2019-09-18 09:12:49.809 DEBUG 4844 --- [http-nio-8080-exec-7] c.e.a.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-18 09:12:49.810 DEBUG 4844 --- [http-nio-8080-exec-7] c.e.a.m.N.countByExample                 : ==>  Preparing: select count(*) from NOTIFICATION WHERE ( RECEIVER = ? and STATUS = ? ) 
+2019-09-18 09:12:49.810 DEBUG 4844 --- [http-nio-8080-exec-7] c.e.a.m.N.countByExample                 : ==> Parameters: 33(Long), 0(Integer)
+2019-09-18 09:12:49.810 DEBUG 4844 --- [http-nio-8080-exec-7] c.e.a.m.N.countByExample                 : <==      Total: 1
+2019-09-18 09:12:49.924 DEBUG 4844 --- [http-nio-8080-exec-8] c.e.a.mapper.UserMapper.selectByExample  : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL, IS_ADMINISTRATOR from USER WHERE ( TOKEN = ? ) 
+2019-09-18 09:12:49.924 DEBUG 4844 --- [http-nio-8080-exec-8] c.e.a.mapper.UserMapper.selectByExample  : ==> Parameters: 03daf36b-233c-401d-98d4-4df2499f54b7(String)
+2019-09-18 09:12:49.924 DEBUG 4844 --- [http-nio-8080-exec-8] c.e.a.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-18 09:12:49.929 DEBUG 4844 --- [http-nio-8080-exec-8] c.e.a.m.N.countByExample                 : ==>  Preparing: select count(*) from NOTIFICATION WHERE ( RECEIVER = ? and STATUS = ? ) 
+2019-09-18 09:12:49.968 DEBUG 4844 --- [http-nio-8080-exec-9] c.e.a.mapper.UserMapper.selectByExample  : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL, IS_ADMINISTRATOR from USER WHERE ( TOKEN = ? ) 
+2019-09-18 09:12:49.929 DEBUG 4844 --- [http-nio-8080-exec-8] c.e.a.m.N.countByExample                 : ==> Parameters: 33(Long), 0(Integer)
+2019-09-18 09:12:49.983 DEBUG 4844 --- [http-nio-8080-exec-9] c.e.a.mapper.UserMapper.selectByExample  : ==> Parameters: 03daf36b-233c-401d-98d4-4df2499f54b7(String)
+2019-09-18 09:12:49.984 DEBUG 4844 --- [http-nio-8080-exec-9] c.e.a.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-18 09:12:49.984 DEBUG 4844 --- [http-nio-8080-exec-8] c.e.a.m.N.countByExample                 : <==      Total: 1
+2019-09-18 09:12:49.985 DEBUG 4844 --- [http-nio-8080-exec-9] c.e.a.m.N.countByExample                 : ==>  Preparing: select count(*) from NOTIFICATION WHERE ( RECEIVER = ? and STATUS = ? ) 
+2019-09-18 09:12:49.986 DEBUG 4844 --- [http-nio-8080-exec-9] c.e.a.m.N.countByExample                 : ==> Parameters: 33(Long), 0(Integer)
+2019-09-18 09:12:49.986 DEBUG 4844 --- [http-nio-8080-exec-9] c.e.a.m.N.countByExample                 : <==      Total: 1
