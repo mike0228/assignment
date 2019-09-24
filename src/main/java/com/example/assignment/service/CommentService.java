@@ -232,5 +232,16 @@ public class CommentService {
         commentListDTO.setData(commentDTOList);
         return commentListDTO;
     }
+
+    public void deleteById(Long id, Boolean isAdministrator ,long postId) {
+        if (isAdministrator != true) {
+            throw new CustomizeException(CustomizeErrorCode.CANNOT_DELETE);
+        }
+        commentMapper.deleteByPrimaryKey(id);
+        Post post =new Post();
+        post.setId(postId);
+        post.setCommentCount(1);
+        postExtMapper.decCommentCount(post);
+    }
 }
 

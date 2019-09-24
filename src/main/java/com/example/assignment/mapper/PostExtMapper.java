@@ -8,6 +8,7 @@ import java.util.List;
 public interface PostExtMapper {
     int incView(Post record);
     int incCommentCount(Post record);
+    int decCommentCount(Post record);
     List<Post> selectRelated(Post post);
 
     Integer countBySearch(PostQueryDTO postQueryDTO);
